@@ -11,6 +11,21 @@ public class Midwife {
     private boolean conductsDelivery;
     private boolean transfusionServices;
 
+    public Midwife(String name, String institution, String facilityType, String district, String subDistrict,
+            String region, String eocServices, boolean otrCorner, boolean conductsDelivery,
+            boolean transfusionServices) {
+        this.name = name;
+        this.institution = institution;
+        this.facilityType = facilityType;
+        this.district = district;
+        this.subDistrict = subDistrict;
+        this.region = region;
+        this.eocServices = eocServices;
+        this.otrCorner = otrCorner;
+        this.conductsDelivery = conductsDelivery;
+        this.transfusionServices = transfusionServices;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
