@@ -23,6 +23,11 @@ public class Visit extends Record {
         // This could involve querying a database or searching through a list of visits
     }
 
+    public void getAllVisitsReport(int patientNumber) {
+        // Logic to retrieve all visits for a specific patient
+        // This could involve querying a database or searching through a list of visits
+    }
+
 
     // Needs to be able to divide up each visit into its own object to be able to that informaton
     /**
