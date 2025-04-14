@@ -22,7 +22,7 @@ public class Mother {
         return -1;
     }
     
-    Boolean updateRecord(){
-        
+    Boolean updateRecord(LocalDate visitDate, record newRecord){
+
     }
 }
