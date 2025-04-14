@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Mother {
     String patientName;
     String address;
@@ -8,9 +10,9 @@ public class Mother {
     String bloodGroup;
     Double hgAtRegistry;
     Double hgAt36Wks;
-    ArrayList record records;
+    ArrayList <record> records;
     
-    void Mother(){
+    void Mother(String patientName, String address, String estimatedDueDate, int parity, String sicklingType,  Boolean sicklingBlood, String bloodGroup,  Double hgAtRegistry, Double hgAt36Wks, ArrayList <record> records){
 
     }
 
