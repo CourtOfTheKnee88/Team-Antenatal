@@ -1,3 +1,6 @@
+/**
+ * The Midwife class holds information about a midwife.
+ */
 public class Midwife {
     private String name;
     private String institution;
