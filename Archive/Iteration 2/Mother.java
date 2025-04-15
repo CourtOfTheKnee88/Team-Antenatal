@@ -30,7 +30,7 @@ public class Mother {
             int parity, String sicklingType, boolean sicklingBlood, String bloodGroup,
             double hgAtRegistry, double hgAt36Wks, Record record) {
         
-        // super(patientName, address) Preparing for Patient superclass.
+        // super(patientName, address, ... etc) Preparing for Patient superclass.
         this.estimatedDueDate = estimatedDueDate;
         this.parity = parity;
         this.sicklingType = sicklingType;
@@ -39,42 +39,6 @@ public class Mother {
         this.hgAtRegistry = hgAtRegistry;
         this.hgAt36Wks = hgAt36Wks;
         this.record = record;
-    }
-
-        /**
-     * Gets the name of the mother.
-     * 
-     * @return The mother's name.
-     */
-    public String getPatientName() {
-        return patientName;
-    }
-
-    /**
-     * Sets the name of the mother.
-     * 
-     * @param patientName The name to set.
-     */
-    public void setPatientName(String patientName) {
-        this.patientName = patientName;
-    }
-
-    /**
-     * Gets the address of the mother.
-     * 
-     * @return The mother's address.
-     */
-    public String getAddress() {
-        return address;
-    }
-
-    /**
-     * Sets the address of the mother.
-     * 
-     * @param address The address to set.
-     */
-    public void setAddress(String address) {
-        this.address = address;
     }
 
     /**
