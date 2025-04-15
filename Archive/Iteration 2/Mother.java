@@ -3,8 +3,6 @@
  * their record in the antenatal care register.
  */
 public class Mother {
-    private String patientName;
-    private String address;
     private String estimatedDueDate;
     private int parity;
     private String sicklingType;
@@ -32,8 +30,7 @@ public class Mother {
             int parity, String sicklingType, boolean sicklingBlood, String bloodGroup,
             double hgAtRegistry, double hgAt36Wks, Record record) {
         
-        this.patientName = patientName;
-        this.address = address;
+        // super(patientName, address) Preparing for Patient superclass.
         this.estimatedDueDate = estimatedDueDate;
         this.parity = parity;
         this.sicklingType = sicklingType;
