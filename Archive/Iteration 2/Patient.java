@@ -3,7 +3,11 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Patient class
+ * This Patient class stores information of patients.
+ * It provides getters and setters and support methods for determining if the
+ * patient is under 5 and the ability to add visits.
+ *
+ * Author Phil Lane
  */
 public class Patient {
     private String name;
@@ -11,35 +15,27 @@ public class Patient {
     private String patientID;
     private String mothersID;
     private List<Visit> records;
-    
     private String outPatientNumber;
     private String nhisNumber;
     private String sex;
     private int age;
     private String address;
-    
     private Clinic clinic;
-    
     private ChildAssessment childAssessment;
-    
-    /**
-     * Default constructor
-     */
-    public Patient() {
-        this.records = new ArrayList<>();
-    }
     
     /**
      * Constructor with required fields
      */
-    public Patient(String name, Date dateOfBirth, String patientID, String mothersID) {
+    public Patient(String name, Date dateOfBirth, String patientID, String mothersID, String sex, String address) {
         this.name = name;
         this.dateOfBirth = dateOfBirth;
         this.patientID = patientID;
         this.mothersID = mothersID;
+        this.sex = sex;
+        this.address = address;
         this.records = new ArrayList<>();
     }
-    
+
     /**
      * Checks if patient is under five years old
      * @return true if patient is under 5 years old
