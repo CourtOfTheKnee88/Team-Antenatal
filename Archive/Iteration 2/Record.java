@@ -25,7 +25,8 @@ public class Record {
     boolean testResult; //(did they get tested)
     Boolean VDRL; //(syphilis)   
     ArrayList <String> remarksAndComplaints;
-    //ArrayList <Visit> visits;
+    ArrayList <Visit> visits;
+    //boolean corrected;
 
     /**
      * Constructs a new Record object.
@@ -69,17 +70,11 @@ public class Record {
         this.testResult = testResult;
         VDRL = vDRL;
         this.remarksAndComplaints = remarksAndComplaints;
-        //this.visits = visits;
+        this.visits = visits;
+        //this.corrected = false; //Indicates whether or not a record has been corrected by a newer record
         }
-    /**
-     * Placeholder method to scan a PDF file and extract data.
-     */
-    public void scan() {
-        // Implement PDF scanning logic here.
-    }
 
     // Getters and setters for all attributes
-
     public String getGestationalPregnancy() {
         return gestationalPregnancy;
     }
@@ -182,6 +177,18 @@ public class Record {
     public void setRemarksAndComplaints(ArrayList<String> remarksAndComplaints) {
         this.remarksAndComplaints = remarksAndComplaints;
     }
+    /*Create a new visit, ask it to populate itself, and adds it to the arraylist of visits*/
+    public void newVisit(String path){
+        Visit latest = new Visit()
+        latest.readDataFromPDF(path);
+        visits.add(latest);
+
+        this.weight = latest.weight;
+        this.bloodPressure = latest.bloodPressure;
+    //Here I will update the record with the latest visit
+    }
+
+
     // public ArrayList<Visit> getVisits() {
     //     return visits;
     // }
@@ -195,5 +202,4 @@ public class Record {
     //     //this.visits.remove(visit);
     // }
 
-    
 }
