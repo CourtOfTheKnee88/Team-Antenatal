@@ -11,6 +11,7 @@ public class Mother {
     private double hgAtRegistry;
     private double hgAt36Wks;
     private Record record;
+    private int totalVisits;
     
     /**
      * Constructor for the Mother class.
@@ -183,6 +184,24 @@ public class Mother {
      */
     public void setRecord(Record record) {
         this.record = record;
+    }
+
+     /**
+     * Sets the number of visits for the mother.
+     * 
+     * @param int numOfVisits The number of visits to set.
+     */
+    public void setNumOfVisits(int visits) {
+        this.totalVisits = visits;
+    }
+
+    /**
+     * Gets the number of visits for the mother.
+     * 
+     * @return The number of visits.
+     */
+    public int getNumOfVisits() {
+        return totalVisits;
     }
 
 }
