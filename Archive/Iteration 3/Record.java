@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -70,9 +71,8 @@ public class Record {
         this.testResult = testResult;
         VDRL = vDRL;
         this.remarksAndComplaints = remarksAndComplaints;
-        this.visits = visits;
         //this.corrected = false; //Indicates whether or not a record has been corrected by a newer record
-        }
+    }
 
     // Getters and setters for all attributes
     public String getGestationalPregnancy() {
@@ -178,14 +178,34 @@ public class Record {
         this.remarksAndComplaints = remarksAndComplaints;
     }
     /*Create a new visit, ask it to populate itself, and adds it to the arraylist of visits*/
-    public void newVisit(String path){
-        Visit latest = new Visit()
+    public void newVisit(String path) throws IOException{
+        Visit latest = new Visit();
         latest.readDataFromPDF(path);
         visits.add(latest);
 
         this.weight = latest.weight;
         this.bloodPressure = latest.bloodPressure;
     //Here I will update the record with the latest visit
+    }
+
+    public void updateRecords(Record record) {
+        this.gestationalPregnancy = record.getGestationalPregnancy();
+        this.date = record.getDate();
+        this.facility_zone = record.getFacility_zone();
+        this.subdistrict = record.getSubdistrict();
+        this.district = record.getDistrict();
+        this.bloodPressure = record.getBloodPressure();
+        this.weight = record.getWeight();
+        this.fetalHeartBeat = record.getFetalHeartBeat();
+        this.regularHeartbeat = record.getFetalHeartBeat();
+        this.registrationNumber = record.getRegistrationNumber();
+        this.age = record.getAge();
+        this.year = record.getYear();
+        this.pretestCounseling = record.isPretestCounseling();
+        this.postTestCounseling = record.isPostTestCounseling();
+        this.testResult = record.isTestResult();
+        this.VDRL = record.getVDRL();
+        this.remarksAndComplaints = record.getRemarksAndComplaints();
     }
 
 

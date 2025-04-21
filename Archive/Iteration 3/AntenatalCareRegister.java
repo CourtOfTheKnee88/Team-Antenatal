@@ -22,7 +22,7 @@ public class AntenatalCareRegister {
      * @param record The record to be updated
      */
     public void updateRecord(Record record) {
-        record.updateRecords();
+        record.updateRecords(record);
     }
 
     /**

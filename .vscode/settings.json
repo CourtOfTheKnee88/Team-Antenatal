@@ -1,0 +1,9 @@
+{
+    "java.project.sourcePaths": [
+        "Archive/Iteration 3"
+    ],
+    "java.project.referencedLibraries": [
+        "dependencies/**/*.jar"
+    ] 
+}
+  

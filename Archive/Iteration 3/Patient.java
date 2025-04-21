@@ -20,8 +20,8 @@ public class Patient {
     private String sex;
     private int age;
     private String address;
-    private Clinic clinic;
-    private ChildAssessment childAssessment;
+ /*    private Clinic clinic;
+    private ChildAssessment childAssessment; */
     
     /**
      * Constructor with required fields
@@ -143,7 +143,7 @@ public class Patient {
         this.address = address;
     }
     
-    public Clinic getClinic() {
+    /* public Clinic getClinic() {
         return clinic;
     }
     
@@ -157,5 +157,5 @@ public class Patient {
     
     public void setChildAssessment(ChildAssessment childAssessment) {
         this.childAssessment = childAssessment;
-    }
-}
+    }*/
+} 
