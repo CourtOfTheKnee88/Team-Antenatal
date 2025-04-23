@@ -1,6 +1,4 @@
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * This Patient class stores information of patients.
@@ -14,26 +12,24 @@ public class Patient {
     private Date dateOfBirth;
     private String patientID;
     private String mothersID;
-    private List<Visit> records;
     private String outPatientNumber;
     private String nhisNumber;
     private String sex;
     private int age;
     private String address;
- /*    private Clinic clinic;
-    private ChildAssessment childAssessment; */
     
     /**
      * Constructor with required fields
      */
-    public Patient(String name, Date dateOfBirth, String patientID, String mothersID, String sex, String address) {
+    public Patient(String name, Date dateOfBirth, 
+                   String patientID, String mothersID, 
+                   String sex, String address) {
         this.name = name;
         this.dateOfBirth = dateOfBirth;
         this.patientID = patientID;
         this.mothersID = mothersID;
         this.sex = sex;
         this.address = address;
-        this.records = new ArrayList<>();
     }
 
     /**
@@ -48,17 +44,6 @@ public class Patient {
         long differenceInMillis = new Date().getTime() - this.dateOfBirth.getTime();
         long differenceInYears = differenceInMillis / (1000L * 60 * 60 * 24 * 365);
         return differenceInYears < 5;
-    }
-    
-    /**
-     * Adds a visit to the patient's records
-     * @param visit The visit to add
-     */
-    public void addVisit(Visit visit) {
-        if (this.records == null) {
-            this.records = new ArrayList<>();
-        }
-        this.records.add(visit);
     }
     
     // Getters and Setters
@@ -93,14 +78,6 @@ public class Patient {
     
     public void setMothersID(String mothersID) {
         this.mothersID = mothersID;
-    }
-    
-    public List<Visit> getRecords() {
-        return records;
-    }
-    
-    public void setRecords(List<Visit> records) {
-        this.records = records;
     }
     
     public String getOutPatientNumber() {
@@ -142,20 +119,5 @@ public class Patient {
     public void setAddress(String address) {
         this.address = address;
     }
-    
-    /* public Clinic getClinic() {
-        return clinic;
-    }
-    
-    public void setClinic(Clinic clinic) {
-        this.clinic = clinic;
-    }
-    
-    public ChildAssessment getChildAssessment() {
-        return childAssessment;
-    }
-    
-    public void setChildAssessment(ChildAssessment childAssessment) {
-        this.childAssessment = childAssessment;
-    }*/
+
 } 

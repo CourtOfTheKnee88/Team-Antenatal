@@ -1,207 +1,268 @@
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 /**
  * The Mother class, subtype of Patient, holds maternity-specific information, including
  * their record in the antenatal care register.
  */
-public class Mother {
-    private String estimatedDueDate;
-    private int parity;
+public class Mother extends Patient {
+    private int age;
+    private int registrationNumber;
+    private double height;
+
+    private Trimester trimester;
+    private String facilityZone;
+    private String subDistrict;
+
     private String sicklingType;
     private boolean sicklingBlood;
     private String bloodGroup;
     private double hgAtRegistry;
     private double hgAt36Wks;
-    private Record record;
-    private int totalVisits;
-    
-    /**
-     * Constructor for the Mother class.
-     * 
-     * @param patientName The name of the mother.
-     * @param address The address of the mother.
-     * @param estimatedDueDate The estimated due date for the mother.
-     * @param parity The parity of the mother.
-     * @param sicklingType The sickling type of the mother (if they have one).
-     * @param sicklingBlood Whether or not the mother has sickling cell disease.
-     * @param bloodGroup The blood group of the mother.
-     * @param hgAtRegistry Blood pressure at registry into the care register.
-     * @param hgAt36Wks Blood pressure at 36 weeks.
-     * @param record The record of the mother.
+    private Date estimatedDueDate;
+    private int parity;
+
+    private boolean vdrlAdministered;
+    private boolean vdrlStatus;
+
+    // pg. 110
+    // https://data.unicef.org/wp-content/uploads/2017/04/Pregnancy-Childbirth-Postpartum-and-Newborn-Care.pdf
+    private boolean hivPreCounseling;
+
+    // In days.
+    private int gestationalAge;
+
+    private boolean tetanusToxoidStatus;
+    private int tetanusToxoidDoses;
+
+    /* IPT, in the context of antenatal care, 
+       refers to Intermittent Preventive Treatment 
+       of malaria in pregnancy (IPTp). 
+       It's a strategy where pregnant women in 
+       malaria-endemic areas receive full doses of 
+       an antimalarial drug,...at specific intervals 
+       during pregnancy, regardless of whether they 
+       have malaria symptoms or not.
+       (Google AI result).
+    */
+    private int iptMalariaDoses;
+
+    /* In the context of antental care, ITN refers to 
+       insecticide-treated nets, which are bed nets 
+       treated with insecticide to prevent mosquito bites 
+       and mosquito-borne diseases, particularly malaria. 
+       (Google AI result).
      */
-    Mother(String patientName, String address, String estimatedDueDate,
-            int parity, String sicklingType, boolean sicklingBlood, String bloodGroup,
-            double hgAtRegistry, double hgAt36Wks, Record record) {
-        
-        // super(patientName, address, ... etc) Preparing for Patient superclass.
-        this.estimatedDueDate = estimatedDueDate;
-        this.parity = parity;
+    private boolean itnInUse;
+
+    private List<Visit> visits;
+
+    public Mother(String name, Date dateOfBirth, String patientID, String mothersID, String sex, String address,
+            int age, int registrationNumber, double height, Trimester trimester, String facilityZone,
+            String subDistrict, String sicklingType, boolean sicklingBlood, String bloodGroup, double hgAtRegistry,
+            double hgAt36Wks, Date estimatedDueDate, int parity, boolean vdrlAdministered, boolean vdrlStatus,
+            boolean hivPreCounseling, int gestationalAge, boolean tetanusToxoidStatus, int tetanusToxoidDoses,
+            int iptMalariaDoses, boolean itnInUse) {
+        super(name, dateOfBirth, patientID, mothersID, sex, address);
+        this.age = age;
+        this.registrationNumber = registrationNumber;
+        this.height = height;
+        this.trimester = trimester;
+        this.facilityZone = facilityZone;
+        this.subDistrict = subDistrict;
         this.sicklingType = sicklingType;
         this.sicklingBlood = sicklingBlood;
         this.bloodGroup = bloodGroup;
         this.hgAtRegistry = hgAtRegistry;
         this.hgAt36Wks = hgAt36Wks;
-        this.record = record;
-    }
-
-    /**
-     * Gets the estimated due date.
-     * 
-     * @return The estimated due date.
-     */
-    public String getEstimatedDueDate() {
-        return estimatedDueDate;
-    }
-
-    /**
-     * Sets the estimated due date.
-     * 
-     * @param estimatedDueDate The estimated due date to set.
-     */
-    public void setEstimatedDueDate(String estimatedDueDate) {
         this.estimatedDueDate = estimatedDueDate;
-    }
-
-    /**
-     * Gets the parity of the mother.
-     * 
-     * @return The parity value.
-     */
-    public int getParity() {
-        return parity;
-    }
-
-    /**
-     * Sets the parity of the mother.
-     * 
-     * @param parity The parity value to set.
-     */
-    public void setParity(int parity) {
         this.parity = parity;
+        this.vdrlAdministered = vdrlAdministered;
+        this.vdrlStatus = vdrlStatus;
+        this.hivPreCounseling = hivPreCounseling;
+        this.gestationalAge = gestationalAge;
+        this.tetanusToxoidStatus = tetanusToxoidStatus;
+        this.tetanusToxoidDoses = tetanusToxoidDoses;
+        this.iptMalariaDoses = iptMalariaDoses;
+        this.itnInUse = itnInUse;
+        this.visits = new ArrayList<>();
     }
 
-    /**
-     * Gets the sickling type of the mother.
-     * 
-     * @return The sickling type.
-     */
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public int getRegistrationNumber() {
+        return registrationNumber;
+    }
+
+    public void setRegistrationNumber(int registrationNumber) {
+        this.registrationNumber = registrationNumber;
+    }
+
+    public double getHeight() {
+        return height;
+    }
+
+    public void setHeight(double height) {
+        this.height = height;
+    }
+
+    public Trimester getTrimester() {
+        return trimester;
+    }
+
+    public void setTrimester(Trimester trimester) {
+        this.trimester = trimester;
+    }
+
+    public String getFacilityZone() {
+        return facilityZone;
+    }
+
+    public void setFacilityZone(String facilityZone) {
+        this.facilityZone = facilityZone;
+    }
+
+    public String getSubDistrict() {
+        return subDistrict;
+    }
+
+    public void setSubDistrict(String subDistrict) {
+        this.subDistrict = subDistrict;
+    }
+
     public String getSicklingType() {
         return sicklingType;
     }
 
-    /**
-     * Sets the sickling type of the mother.
-     * 
-     * @param sicklingType The sickling type to set.
-     */
     public void setSicklingType(String sicklingType) {
         this.sicklingType = sicklingType;
     }
 
-    /**
-     * Checks if the mother has sickling blood.
-     * 
-     * @return true if the mother has sickling blood, false otherwise.
-     */
     public boolean isSicklingBlood() {
         return sicklingBlood;
     }
 
-    /**
-     * Sets whether the mother has sickling blood.
-     * 
-     * @param sicklingBlood true if the mother has sickling blood, false otherwise.
-     */
     public void setSicklingBlood(boolean sicklingBlood) {
         this.sicklingBlood = sicklingBlood;
     }
 
-    /**
-     * Gets the blood group of the mother.
-     * 
-     * @return The blood group.
-     */
     public String getBloodGroup() {
         return bloodGroup;
     }
 
-    /**
-     * Sets the blood group of the mother.
-     * 
-     * @param bloodGroup The blood group to set.
-     */
     public void setBloodGroup(String bloodGroup) {
         this.bloodGroup = bloodGroup;
     }
 
-    /**
-     * Gets the hemoglobin level at registry.
-     * 
-     * @return The hemoglobin level at registry.
-     */
     public double getHgAtRegistry() {
         return hgAtRegistry;
     }
 
-    /**
-     * Sets the hemoglobin level at registry.
-     * 
-     * @param hgAtRegistry The hemoglobin level to set.
-     */
     public void setHgAtRegistry(double hgAtRegistry) {
         this.hgAtRegistry = hgAtRegistry;
     }
 
-    /**
-     * Gets the hemoglobin level at 36 weeks.
-     * 
-     * @return The hemoglobin level at 36 weeks.
-     */
     public double getHgAt36Wks() {
         return hgAt36Wks;
     }
 
-    /**
-     * Sets the hemoglobin level at 36 weeks.
-     * 
-     * @param hgAt36Wks The hemoglobin level to set.
-     */
     public void setHgAt36Wks(double hgAt36Wks) {
         this.hgAt36Wks = hgAt36Wks;
     }
 
-    /**
-     * Gets the mother's record.
-     * 
-     * @return The record.
-     */
-    public Record getRecord() {
-        return record;
+    public Date getEstimatedDueDate() {
+        return estimatedDueDate;
     }
 
-    /**
-     * Sets the mother's record.
-     * 
-     * @param record The record to set.
-     */
-    public void setRecord(Record record) {
-        this.record = record;
+    public void setEstimatedDueDate(Date estimatedDueDate) {
+        this.estimatedDueDate = estimatedDueDate;
     }
 
-     /**
-     * Sets the number of visits for the mother.
-     * 
-     * @param int numOfVisits The number of visits to set.
-     */
-    public void setNumOfVisits(int visits) {
-        this.totalVisits = visits;
+    public int getParity() {
+        return parity;
     }
 
-    /**
-     * Gets the number of visits for the mother.
-     * 
-     * @return The number of visits.
-     */
-    public int getNumOfVisits() {
-        return totalVisits;
+    public void setParity(int parity) {
+        this.parity = parity;
+    }
+
+    public boolean isVdrlAdministered() {
+        return vdrlAdministered;
+    }
+
+    public void setVdrlAdministered(boolean vdrlAdministered) {
+        this.vdrlAdministered = vdrlAdministered;
+    }
+
+    public boolean isVdrlStatus() {
+        return vdrlStatus;
+    }
+
+    public void setVdrlStatus(boolean vdrlStatus) {
+        this.vdrlStatus = vdrlStatus;
+    }
+
+    public boolean isHivPreCounseling() {
+        return hivPreCounseling;
+    }
+
+    public void setHivPreCounseling(boolean hivPreCounseling) {
+        this.hivPreCounseling = hivPreCounseling;
+    }
+
+    public int getGestationalAge() {
+        return gestationalAge;
+    }
+
+    public void setGestationalAge(int gestationalAge) {
+        this.gestationalAge = gestationalAge;
+    }
+
+    public boolean isTetanusToxoidStatus() {
+        return tetanusToxoidStatus;
+    }
+
+    public void setTetanusToxoidStatus(boolean tetanusToxoidStatus) {
+        this.tetanusToxoidStatus = tetanusToxoidStatus;
+    }
+
+    public int getTetanusToxoidDoses() {
+        return tetanusToxoidDoses;
+    }
+
+    public void setTetanusToxoidDoses(int tetanusToxoidDoses) {
+        this.tetanusToxoidDoses = tetanusToxoidDoses;
+    }
+
+    public int getIptMalariaDoses() {
+        return iptMalariaDoses;
+    }
+
+    public void setIptMalariaDoses(int iptMalariaDoses) {
+        this.iptMalariaDoses = iptMalariaDoses;
+    }
+
+    public boolean isItnInUse() {
+        return itnInUse;
+    }
+
+    public void setItnInUse(boolean itnInUse) {
+        this.itnInUse = itnInUse;
+    }
+
+    public void addVisit(Visit visit) {
+        visits.add(visit);
+    }
+
+    public List<Visit> getVisits() {
+        return visits;
     }
 
 }

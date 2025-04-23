@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The AntenatalCareRegister class manages information about midwives and mothers
@@ -16,42 +17,19 @@ public class AntenatalCareRegister {
         this.motherList = new ArrayList<>();
     }
 
-    /**
-     * Updates the given record by calling its updateRecords method.
-     *
-     * @param record The record to be updated
-     */
-    public void updateRecord(Record record) {
-        record.updateRecords(record);
+    public void addMidwife(Midwife midwife) {
+        midwifeList.add(midwife);
     }
 
-    /**
-     * Deletes a record by calling its delete method.
-     *
-     * @param record The record to be deleted
-     */
-    public void deleteRecord(Record record) {
-        mother.records.get(index).delete();
+    public void addMother(Mother mother) {
+        motherList.add(mother);
     }
 
-    /**
-     * Retrieves a specific record for a mother at the given index.
-     *
-     * @param mother The mother identifier or index
-     * @param index The index of the record in the mother's record list
-     * @return The retrieved record
-     */
-    public Record getRecord(int mother, int index) {
-        record = mother.records.get(index);
-        return record;
+    public List<Midwife> getMidwives() {
+        return midwifeList;
     }
 
-    /**
-     * Adds a new record to a mother's record list.
-     *
-     * @param record The record to be added
-     */
-    public void addRecord(Record record) {
-        mother.addRecord(record);
+    public List<Mother> getMothers() {
+        return motherList;
     }
 }
