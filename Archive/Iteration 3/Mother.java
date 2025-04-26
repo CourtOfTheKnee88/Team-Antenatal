@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * The Mother class, subtype of Patient, holds maternity-specific information, including
@@ -32,6 +33,8 @@ public class Mother extends Patient {
 
     // In days.
     private int gestationalAge;
+
+    private Date estimatedConceptionDate;
 
     private boolean tetanusToxoidStatus;
     private int tetanusToxoidDoses;
@@ -82,6 +85,11 @@ public class Mother extends Patient {
         this.vdrlStatus = vdrlStatus;
         this.hivPreCounseling = hivPreCounseling;
         this.gestationalAge = gestationalAge;
+        
+        // Estimate start of pregnancy based on gestational age.
+        estimatedConceptionDate = 
+            new Date((new Date().getTime()) - TimeUnit.DAYS.toMillis(gestationalAge));
+
         this.tetanusToxoidStatus = tetanusToxoidStatus;
         this.tetanusToxoidDoses = tetanusToxoidDoses;
         this.iptMalariaDoses = iptMalariaDoses;
@@ -223,6 +231,14 @@ public class Mother extends Patient {
 
     public void setGestationalAge(int gestationalAge) {
         this.gestationalAge = gestationalAge;
+    }
+
+    public Date getEstimatedConceptionDate() {
+        return estimatedConceptionDate;
+    }
+
+    public void setEstimatedConceptionDate(Date estimatedConceptionDate) {
+        this.estimatedConceptionDate = estimatedConceptionDate;
     }
 
     public boolean isTetanusToxoidStatus() {

@@ -2,7 +2,7 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 import java.io.File;
 import java.io.IOException;
-import java.sql.Date;
+import java.util.Date;
 
 public class Visit {
     private boolean hivResult;
@@ -41,8 +41,6 @@ public class Visit {
         this.complaints = complaints;
         this.remarks = remarks;
     }
-
-    public Visit() {}
 
     public boolean isHivResult() {
         return hivResult;
@@ -142,7 +140,7 @@ public class Visit {
      * @param pdfFilePath The path to the PDF file.
      * @throws IOException If an error occurs while reading the PDF.
      */
-    public void readDataFromPDF(String pdfFilePath) throws IOException {
+/*     public void readDataFromPDF(String pdfFilePath) throws IOException {
         File file = new File(pdfFilePath);
         try (PDDocument document = PDDocument.load(file)) {
             if (!document.isEncrypted()) {
@@ -167,5 +165,5 @@ public class Visit {
                 throw new IOException("The PDF is encrypted and cannot be read.");
             }
         }
-    }
+    } */
 }
