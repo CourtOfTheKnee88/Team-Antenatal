@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
  * their record in the antenatal care register.
  */
 public class Mother extends Patient {
+    private String midwifeName;
     private int age;
     private int registrationNumber;
     private double height;
@@ -61,7 +62,8 @@ public class Mother extends Patient {
 
     private List<Visit> visits;
 
-    public Mother(String name, Date dateOfBirth, String patientID, String mothersID, String sex, String address,
+    public Mother(String midwifeName, String name, Date dateOfBirth, String patientID, String mothersID, 
+            String sex, String address,
             int age, int registrationNumber, double height, Trimester trimester, String facilityZone,
             String subDistrict, String sicklingType, boolean sicklingBlood, String bloodGroup, double hgAtRegistry,
             double hgAt36Wks, Date estimatedDueDate, int parity, boolean vdrlAdministered, boolean vdrlStatus,
@@ -95,6 +97,14 @@ public class Mother extends Patient {
         this.iptMalariaDoses = iptMalariaDoses;
         this.itnInUse = itnInUse;
         this.visits = new ArrayList<>();
+    }
+
+    public String getMidwifeName() {
+        return midwifeName;
+    }
+
+    public void setMidwifeName(String midwifeName) {
+        this.midwifeName = midwifeName;
     }
 
     public int getAge() {

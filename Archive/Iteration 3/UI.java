@@ -163,6 +163,23 @@ public class UI {
     }
 
     private static void manualAddMother(String name, JFrame frame) {
+        String midwifeName = JOptionPane.showInputDialog(
+            "Enter the name of the midwife providing care to the mother:"
+        );
+        if (!register.hasMidwife(midwifeName)) {
+            int choice = JOptionPane.showOptionDialog(
+                frame,  
+                "This midwife doesn't exist in the records- add now?",
+                "Add New Midwife?",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                new String[]{"Yes", "No"},
+                "Yes"
+            );
+            if (choice == JOptionPane.YES_OPTION)
+                manualAddMidwife(frame);
+        }
         Date dateOfBirth = getDateEntry(frame,
             "Enter the mother's date of birth (MM/dd/yyyy):"
         );
@@ -290,6 +307,7 @@ public class UI {
             "ITN Net?"
         );
         Mother newMother = new Mother(
+            midwifeName,
             name, 
             dateOfBirth, 
             patientId, 
@@ -416,7 +434,7 @@ public class UI {
                 breastFeedingEd,
                 weight,
                 complaints,
-                remarks       
+                remarks
             );
             mother.addVisit(visit);
             JOptionPane.showMessageDialog(
@@ -434,15 +452,15 @@ public class UI {
             int choice = JOptionPane.showOptionDialog(
                 frame,  
                 "This name already exists in the records- continue and update?",
-                "Add New Mother?",
+                "Update Midwife?",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE,
                 null,
                 new String[]{"Yes", "No"},
                 "Yes"
             );
-        if (choice != JOptionPane.YES_OPTION)
-            return;
+            if (choice != JOptionPane.YES_OPTION)
+                return;
         }
         String institution = JOptionPane.showInputDialog(
             "Enter the name of the institution where the midwife works:"
@@ -510,7 +528,7 @@ public class UI {
             JOptionPane.showMessageDialog(frame, "Manual Entry selected for " + recordType + ".");
             if (recordType.equals("Mother Visit"))
                 manualAddMotherVisit(frame);
-            else if (recordType.equals("Midwife Record"));
+            else if (recordType.equals("Midwife Record"))
                 manualAddMidwife(frame);
         } else if (choice == JOptionPane.NO_OPTION) {
             // PDF Scan selected
