@@ -426,6 +426,72 @@ public class UI {
         }
     }
 
+    private static void manualAddMidwife(JFrame frame) {
+        String name = JOptionPane.showInputDialog(
+            "Enter the name of the midwife:"
+        );
+        if (register.hasMidwife(name)) {
+            int choice = JOptionPane.showOptionDialog(
+                frame,  
+                "This name already exists in the records- continue and update?",
+                "Add New Mother?",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                new String[]{"Yes", "No"},
+                "Yes"
+            );
+        if (choice != JOptionPane.YES_OPTION)
+            return;
+        }
+        String institution = JOptionPane.showInputDialog(
+            "Enter the name of the institution where the midwife works:"
+        );
+        String facilityType = JOptionPane.showInputDialog(
+            "Enter the type of facility the midwife works at:"
+        );
+        String district = JOptionPane.showInputDialog(
+            "Enter the district the midwife operates:"
+        );
+        String subDistrict = JOptionPane.showInputDialog(
+            "Enter the sub district the midwife operates:"
+        );
+        String region = JOptionPane.showInputDialog(
+            "Enter the region the midwife is located:"
+        );
+        String eocServices = JOptionPane.showInputDialog(
+            "Enter what emergency obsteric services are offered:"
+        );
+        boolean otrCorner = getBoolEntry(
+            frame, 
+            "Does the midwife's facility have an OTR corner?",
+            "OTR Corner?"
+        );
+        boolean conductsDelivery = getBoolEntry(
+            frame, 
+            "Does the midwife conduct deliveries?",
+            "Conducts Deliveries?"
+        );
+        boolean transfusionServices = getBoolEntry(
+            frame, 
+            "Are transfusion services available?",
+            "Transfusion Services?"
+        );
+        Midwife midwife = new Midwife(
+            name, 
+            institution, 
+            facilityType, 
+            district, 
+            subDistrict, 
+            region, 
+            eocServices, 
+            otrCorner, 
+            conductsDelivery, 
+            transfusionServices
+        );
+        register.addMidwife(name, midwife);
+    }
+
     private static void showOptionsDialog(JFrame frame, String recordType) {
         // Create a dialog with two options
         int choice = JOptionPane.showOptionDialog(
@@ -442,7 +508,10 @@ public class UI {
         if (choice == JOptionPane.YES_OPTION) {
             // Manual Entry selected
             JOptionPane.showMessageDialog(frame, "Manual Entry selected for " + recordType + ".");
-            manualAddMotherVisit(frame);
+            if (recordType.equals("Mother Visit"))
+                manualAddMotherVisit(frame);
+            else if (recordType.equals("Midwife Record"));
+                manualAddMidwife(frame);
         } else if (choice == JOptionPane.NO_OPTION) {
             // PDF Scan selected
             JFileChooser fileChooser = new JFileChooser();

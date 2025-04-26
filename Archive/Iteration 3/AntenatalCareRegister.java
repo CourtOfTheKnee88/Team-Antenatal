@@ -7,19 +7,27 @@ import java.util.List;
  * in an antenatal care system, along with methods to manipulate patient records.
  */
 public class AntenatalCareRegister {
-    private ArrayList<Midwife> midwifeList;
+    private HashMap<String, Midwife> midwives;
     private HashMap<String, Mother> mothers;
 
     /**
      * Constructs a new AntenatalCareRegister with empty lists for midwives and mothers.
      */
     public AntenatalCareRegister() {
-        this.midwifeList = new ArrayList<>();
+        this.midwives = new HashMap<>();
         this.mothers = new HashMap<>();
     }
 
-    public void addMidwife(Midwife midwife) {
-        midwifeList.add(midwife);
+    public void addMidwife(String name, Midwife midwife) {
+        midwives.put(name, midwife);
+    }
+
+    public boolean hasMidwife(String name) {
+        return midwives.containsKey(name);
+    }
+
+    public Midwife getMidwife(String name) {
+        return midwives.get(name);
     }
 
     public void addMother(String name, Mother mother) {
@@ -35,7 +43,7 @@ public class AntenatalCareRegister {
     }
 
     public List<Midwife> getMidwives() {
-        return midwifeList;
+        return new ArrayList<>(midwives.values());
     }
 
     public List<Mother> getMothers() {
