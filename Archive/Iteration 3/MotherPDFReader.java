@@ -7,7 +7,19 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class MotherPDFReader {
+public class MotherPDFReader extends Mother {
+
+    public MotherPDFReader(String midwifeName, String name, Date dateOfBirth, String patientID, String mothersID,
+            String sex, String address, int age, int registrationNumber, double height, Trimester trimester,
+            String facilityZone, String subDistrict, String sicklingType, boolean sicklingBlood, String bloodGroup,
+            double hgAtRegistry, double hgAt36Wks, Date estimatedDueDate, int parity, boolean vdrlAdministered,
+            boolean vdrlStatus, boolean hivPreCounseling, int gestationalAge, boolean tetanusToxoidStatus,
+            int tetanusToxoidDoses, int iptMalariaDoses, boolean itnInUse) {
+        super(midwifeName, name, dateOfBirth, patientID, mothersID, sex, address, age, registrationNumber, height, trimester,
+                facilityZone, subDistrict, sicklingType, sicklingBlood, bloodGroup, hgAtRegistry, hgAt36Wks, estimatedDueDate,
+                parity, vdrlAdministered, vdrlStatus, hivPreCounseling, gestationalAge, tetanusToxoidStatus, tetanusToxoidDoses,
+                iptMalariaDoses, itnInUse);
+    }
 
     public static Mother createMotherFromPDF(String pdfFilePath) throws IOException {
         File file = new File(pdfFilePath);
