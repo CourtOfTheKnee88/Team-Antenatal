@@ -45,6 +45,7 @@ public class MotherPDFReader {
         int iptMalariaDoses = 0;
         boolean itnInUse = false;
 
+        // Load the PDF document
         try (PDDocument document = PDDocument.load(file)) {
             if (!document.isEncrypted()) {
                 PDFTextStripper pdfStripper = new PDFTextStripper();

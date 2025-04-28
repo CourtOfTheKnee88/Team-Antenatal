@@ -17,7 +17,7 @@ public class UI {
         // Create the main frame
         JFrame frame = new JFrame("Antenatal Records");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(400, 200);
+        frame.setSize(400, 300); // Adjusted size to accommodate new buttons
 
         // Create a panel
         JPanel panel = new JPanel();
@@ -26,6 +26,8 @@ public class UI {
         // Create buttons
         JButton addMotherButton = new JButton("Add Mother Visit");
         JButton addMidwifeButton = new JButton("Add Midwife Record");
+        JButton printMotherReportButton = new JButton("Print Mother Report");
+        JButton printMidwifeReportButton = new JButton("Print Midwife Report");
 
         // Add action listeners to buttons
         addMotherButton.addActionListener(new ActionListener() {
@@ -42,9 +44,25 @@ public class UI {
             }
         });
 
+        printMotherReportButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                printMotherReport(frame);
+            }
+        });
+
+        printMidwifeReportButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                printMidwifeReport(frame);
+            }
+        });
+
         // Add buttons to the panel
         panel.add(addMotherButton);
         panel.add(addMidwifeButton);
+        panel.add(printMotherReportButton);
+        panel.add(printMidwifeReportButton);
 
         // Add panel to the frame
         frame.add(panel);
@@ -526,8 +544,9 @@ public class UI {
         if (choice == JOptionPane.YES_OPTION) {
             // Manual Entry selected
             JOptionPane.showMessageDialog(frame, "Manual Entry selected for " + recordType + ".");
-            if (recordType.equals("Mother Visit"))
+            if (recordType.equals("Mother Visit")) {
                 manualAddMotherVisit(frame);
+            }
             else if (recordType.equals("Midwife Record"))
                 manualAddMidwife(frame);
         } else if (choice == JOptionPane.NO_OPTION) {
@@ -545,5 +564,104 @@ public class UI {
                 }
             }
         }
+    }
+
+    // Method to print the Mother Report
+    private static void printMotherReport(JFrame frame) {
+        // Prompt the user for the mother's name
+        String motherName = JOptionPane.showInputDialog(frame, "Enter the mother's name:");
+        if (motherName == null || motherName.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(frame, "Mother name cannot be empty.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Prompt the user for the registration number
+        String registrationNumberInput = JOptionPane.showInputDialog(frame, "Enter the mother's registration number:");
+        if (registrationNumberInput == null || registrationNumberInput.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(frame, "Registration number cannot be empty.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        int registrationNumber;
+        try {
+            registrationNumber = Integer.parseInt(registrationNumberInput.trim());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(frame, "Invalid registration number. Please enter a valid number.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Find the mother in the register
+        Mother mother = register.getMother(motherName);
+        if (mother == null || mother.getRegistrationNumber() != registrationNumber) {
+            JOptionPane.showMessageDialog(frame, "No mother found with the provided name and registration number.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Generate the report for the specific mother
+        StringBuilder report = new StringBuilder("Mother Report:\n\n");
+        report.append("Name: ").append(mother.getName()).append("\n");
+        report.append("Age: ").append(mother.getAge()).append("\n");
+        report.append("Height: ").append(mother.getHeight()).append(" cm\n");
+        report.append("Parity: ").append(mother.getParity()).append("\n");
+        report.append("Gestational Age: ").append(mother.getGestationalAge()).append(" days\n");
+        report.append("Estimated Due Date: ").append(mother.getEstimatedDueDate()).append("\n");
+        report.append("--------------------------------------------------\n");
+
+        // Display the report
+        JOptionPane.showMessageDialog(frame, report.toString(), "Mother Report", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    // Method to print the Midwife Report
+    private static void printMidwifeReport(JFrame frame) {
+        // Prompt the user for the month
+        String monthInput = JOptionPane.showInputDialog(frame, "Enter the month (1-12):");
+        if (monthInput == null || monthInput.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(frame, "Month cannot be empty.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        int month;
+        try {
+            month = Integer.parseInt(monthInput.trim());
+            if (month < 1 || month > 12) {
+                throw new NumberFormatException("Month out of range");
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(frame, "Invalid month. Please enter a number between 1 and 12.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Prompt the user for the year
+        String yearInput = JOptionPane.showInputDialog(frame, "Enter the year (e.g., 2025):");
+        if (yearInput == null || yearInput.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(frame, "Year cannot be empty.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        int year;
+        try {
+            year = Integer.parseInt(yearInput.trim());
+            if (year < 1900 || year > 2100) { // Adjust range as needed
+                throw new NumberFormatException("Year out of range");
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(frame, "Invalid year. Please enter a valid year (e.g., 2025).", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Generate the report for the specified month and year
+        StringBuilder report = new StringBuilder("Midwife Report for " + month + "/" + year + ":\n\n");
+        for (Midwife midwife : register.getMidwives()) {
+            // Assuming midwife data is relevant for the given month/year
+            report.append("Name: ").append(midwife.getName()).append("\n");
+            report.append("Institution: ").append(midwife.getInstitution()).append("\n");
+            report.append("Facility Type: ").append(midwife.getFacilityType()).append("\n");
+            report.append("Region: ").append(midwife.getRegion()).append("\n");
+            report.append("Conducts Deliveries: ").append(midwife.isConductsDelivery() ? "Yes" : "No").append("\n");
+            report.append("--------------------------------------------------\n");
+        }
+
+        // Display the report
+        JOptionPane.showMessageDialog(frame, report.toString(), "Midwife Report", JOptionPane.INFORMATION_MESSAGE);
     }
 }
