@@ -19,7 +19,14 @@ public class Patient {
     private String address;
     
     /**
-     * Constructor with required fields
+     * Constructs a Patient object with required fields.
+     *
+     * @param name the patient's name
+     * @param dateOfBirth the patient's date of birth
+     * @param patientID the unique patient identifier
+     * @param mothersID the ID of the patient's mother
+     * @param sex the patient's sex
+     * @param address the patient's address
      */
     public Patient(String name, Date dateOfBirth, 
                    String patientID, String mothersID, 
@@ -48,74 +55,92 @@ public class Patient {
     
     // Getters and Setters
     
+    /** @return the patient's name */
     public String getName() {
         return name;
     }
     
+    /** @param name the patient's name */
     public void setName(String name) {
         this.name = name;
     }
     
+    /** @return the patient's date of birth */
     public Date getDateOfBirth() {
         return dateOfBirth;
     }
     
+    /** @param dateOfBirth the patient's date of birth */
     public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
     
+    /** @return the patient ID */
     public String getPatientID() {
         return patientID;
     }
     
+    /** @param patientID the patient ID */
     public void setPatientID(String patientID) {
         this.patientID = patientID;
     }
     
+    /** @return the mother's ID */
     public String getMothersID() {
         return mothersID;
     }
     
+    /** @param mothersID the mother's ID */
     public void setMothersID(String mothersID) {
         this.mothersID = mothersID;
     }
     
+    /** @return the outpatient number */
     public String getOutPatientNumber() {
         return outPatientNumber;
     }
     
+    /** @param outPatientNumber the outpatient number */
     public void setOutPatientNumber(String outPatientNumber) {
         this.outPatientNumber = outPatientNumber;
     }
     
+    /** @return the NHIS (insurance) number */
     public String getNhisNumber() {
         return nhisNumber;
     }
     
+    /** @param nhisNumber the NHIS (insurance) number */
     public void setNhisNumber(String nhisNumber) {
         this.nhisNumber = nhisNumber;
     }
     
+    /** @return the patient's sex */
     public String getSex() {
         return sex;
     }
     
+    /** @param sex the patient's sex */
     public void setSex(String sex) {
         this.sex = sex;
     }
     
+    /** @return the patient's age */
     public int getAge() {
         return age;
     }
     
+    /** @param age the patient's age */
     public void setAge(int age) {
         this.age = age;
     }
     
+    /** @return the patient's address */
     public String getAddress() {
         return address;
     }
     
+    /** @param address the patient's address */
     public void setAddress(String address) {
         this.address = address;
     }
