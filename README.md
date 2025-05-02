@@ -1,42 +1,82 @@
-## Team Antenatal
+# Team Antenatal
 
 ## Project Overview
-The goal of this project was to create an application to manage Antenatal health care information in rural Ghanaian health clinics. Antenatal care refers to the health of pregnant women. In the scope of this project was also information about midwives. 
+The goal of this project is to create an application to manage antenatal health care information in rural Ghanaian health clinics. Antenatal care refers to the health of pregnant women. This project also includes information about midwives to support their role in providing care.
 
-## Project Set Up
-# Structure
-The project has a few different folders
-Archive
-Iteration 1
-Iteration 2
-Iteration 3
-Final Iteration
-Documentation
+---
 
-# Java Classes
-The project has a few different classes each representing different functions
+## Project Structure
 
-# Branches
-This project was done by a team of 5 different people. To help midgate merge conflicts each team member has their own branch. There was also a main branch in which at the end of each iteration all branches were synced too.
+### Folders
+The project is organized into the following folders:
+- **Archive**: Contains earlier iterations of the project.
+- **Iteration 1, Iteration 2, Iteration 3**: Progressive iterations of the project.
+- **Final Iteration**: The final version of the project.
+- **Documentation**: Contains supporting documents for the project.
 
-## About the GUI 
-The GUI is a simple GUI meant to be a component for a large GUI. It has four buttons each performing a different function. More about how to use the GUI in the Usage section.
+### Java Classes
+The project includes several Java classes, each representing different functionalities:
+- **`Midwife.java`**: Holds all information related to midwives.
+- **`Mother.java`**: Holds all information related to mothers.
+- **`Patient.java`**: A placeholder class created by another group, not fully implemented.
+- **`UI.java`**: Contains the GUI and its functionality.
+- **`Visit.java`**: Holds information for each mother visit.
+- **`AntenatalCareRegister.java`**: Manages all patients and their records.
+
+### Branches
+To manage collaboration among the team of five, each team member worked on their own branch. At the end of each iteration, all branches were merged into the main branch to synchronize progress.
+
+---
+
+## About the GUI
+The GUI is a simple interface designed to be a component of a larger application. It provides four main functionalities, accessible via buttons. These functionalities are described in the **Usage** section below.
+
+---
 
 ## How to Run
-To run this project navigate to the *UI.java* file under the folder called *Final Iteration*. Simply press the run button.
+To run this project:
+1. Navigate to the `UI.java` file located in the **Final Iteration** folder.
+2. Press the "Run" button in your IDE.
 
-## Useage
-The GUI provides four main functions
-1. Add mother visit
-   - When clicking this button you can choose to add a mother visit via a manual entry or a pdf scan.
-2. Add Midwife Report
-   - When clicking this button you can choose to add a mother visit via a manual entry or a pdf scan.
-3. Print Mother Report
-  - Asks the user to provide the mothers name and patient ID and provides a report of the mothers visits
-4. Print Midwife Report
-  - Asks the user to provide a month and year and provides a monthly report for the midwives
+---
+
+## Usage
+The GUI provides the following four main functions:
+
+1. **Add Mother Visit**
+   - Allows you to add a mother visit via:
+     - **Manual Entry**: Enter the details manually.
+     - **PDF Scan**: Upload a PDF to extract and populate the details automatically.
+
+2. **Add Midwife Report**
+   - Allows you to add a midwife report via:
+     - **Manual Entry**: Enter the details manually.
+     - **PDF Scan**: Upload a PDF to extract and populate the details automatically.
+
+3. **Print Mother Report**
+   - Prompts the user to provide the mother's name and registration number.
+   - Generates and displays a report of the mother's visits.
+
+4. **Print Midwife Report**
+   - Prompts the user to provide a month and year.
+   - Generates and displays a monthly report for the midwives.
+
+---
 
 ## Team Roster
-Team Leader - Courtney Jackson 
-Pair 1: Abbas Jabbar, Thad Sabotoski
-Pair 2: Cody Savage, Phil Lane
+- **Team Leader**: Courtney Jackson
+- **Pair 1**: Abbas Jabbar, Thad Sabotoski
+- **Pair 2**: Cody Savage, Phil Lane
+
+---
+
+## Additional Notes
+- This project was developed collaboratively by a team of five members.
+- The application is designed to be modular and extendable, allowing for future enhancements.
+- The GUI is a prototype and can be integrated into a larger system for managing antenatal care.
+
+---
+
+## License
+This project is licensed under the [MIT License](LICENSE).
+
