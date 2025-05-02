@@ -73,10 +73,5 @@ The GUI provides the following four main functions:
 ## Additional Notes
 - This project was developed collaboratively by a team of five members.
 - The application is designed to be modular and extendable, allowing for future enhancements.
-- The GUI is a prototype and can be integrated into a larger system for managing antenatal care.
-
----
-
-## License
-This project is licensed under the [MIT License](LICENSE).
+- The GUI is a prototype and can be integrated into a larger system for managing heath care in Ghana.
 
