@@ -463,12 +463,10 @@ public class UI {
     }
 
     private static void manualAddMidwife(JFrame frame) {
-        String name = JOptionPane.showInputDialog(
-            "Enter the name of the midwife:"
-        );
+        String name = JOptionPane.showInputDialog("Enter the name of the midwife:");
         if (register.hasMidwife(name)) {
             int choice = JOptionPane.showOptionDialog(
-                frame,  
+                frame,
                 "This name already exists in the records- continue and update?",
                 "Update Midwife?",
                 JOptionPane.YES_NO_OPTION,
@@ -480,50 +478,31 @@ public class UI {
             if (choice != JOptionPane.YES_OPTION)
                 return;
         }
-        String institution = JOptionPane.showInputDialog(
-            "Enter the name of the institution where the midwife works:"
-        );
-        String facilityType = JOptionPane.showInputDialog(
-            "Enter the type of facility the midwife works at:"
-        );
-        String district = JOptionPane.showInputDialog(
-            "Enter the district the midwife operates:"
-        );
-        String subDistrict = JOptionPane.showInputDialog(
-            "Enter the sub district the midwife operates:"
-        );
-        String region = JOptionPane.showInputDialog(
-            "Enter the region the midwife is located:"
-        );
-        String eocServices = JOptionPane.showInputDialog(
-            "Enter what emergency obsteric services are offered:"
-        );
-        boolean otrCorner = getBoolEntry(
-            frame, 
-            "Does the midwife's facility have an OTR corner?",
-            "OTR Corner?"
-        );
-        boolean conductsDelivery = getBoolEntry(
-            frame, 
-            "Does the midwife conduct deliveries?",
-            "Conducts Deliveries?"
-        );
-        boolean transfusionServices = getBoolEntry(
-            frame, 
-            "Are transfusion services available?",
-            "Transfusion Services?"
-        );
+        String institution = JOptionPane.showInputDialog("Enter the name of the institution where the midwife works:");
+        String facilityType = JOptionPane.showInputDialog("Enter the type of facility the midwife works at:");
+        String district = JOptionPane.showInputDialog("Enter the district the midwife operates:");
+        String subDistrict = JOptionPane.showInputDialog("Enter the sub district the midwife operates:");
+        String region = JOptionPane.showInputDialog("Enter the region the midwife is located:");
+        String eocServices = JOptionPane.showInputDialog("Enter what emergency obstetric services are offered:");
+        boolean otrCorner = getBoolEntry(frame, "Does the midwife's facility have an OTR corner?", "OTR Corner?");
+        boolean conductsDelivery = getBoolEntry(frame, "Does the midwife conduct deliveries?", "Conducts Deliveries?");
+        boolean transfusionServices = getBoolEntry(frame, "Are transfusion services available?", "Transfusion Services?");
+        int numElectiveAbortions = getIntEntry(0, 1000, frame, "Enter the number of elective abortions:");
+        int numSpontaneousAbortions = getIntEntry(0, 1000, frame, "Enter the number of spontaneous abortions:");
+        int numInducedAbortions = getIntEntry(0, 1000, frame, "Enter the number of induced abortions:");
+        int numMVAsDone = getIntEntry(0, 1000, frame, "Enter the number of MVAs done:");
+        int numDCDone = getIntEntry(0, 1000, frame, "Enter the number of DCs done:");
+        int numMalesSeenAtANC = getIntEntry(0, 1000, frame, "Enter the number of males seen at ANC:");
+        int numMalesSeenAtDEL = getIntEntry(0, 1000, frame, "Enter the number of males seen at delivery:");
+        int numMalesSeenPNC = getIntEntry(0, 1000, frame, "Enter the number of males seen at PNC:");
+        int numMalesSeenFP = getIntEntry(0, 1000, frame, "Enter the number of males seen at FP:");
+
         Midwife midwife = new Midwife(
-            name, 
-            institution, 
-            facilityType, 
-            district, 
-            subDistrict, 
-            region, 
-            eocServices, 
-            otrCorner, 
-            conductsDelivery, 
-            transfusionServices
+            name, institution, facilityType, district, subDistrict, region,
+            eocServices, otrCorner, conductsDelivery, transfusionServices,
+            numElectiveAbortions, numSpontaneousAbortions, numInducedAbortions,
+            numMVAsDone, numDCDone, numMalesSeenAtANC, numMalesSeenAtDEL,
+            numMalesSeenPNC, numMalesSeenFP
         );
         register.addMidwife(name, midwife);
     }
