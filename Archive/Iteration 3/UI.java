@@ -71,6 +71,13 @@ public class UI {
         frame.setVisible(true);
     }
 
+    /**
+     * Prompts the user to enter a date via a dialog, and parses it.
+     * 
+     * @param frame the parent JFrame
+     * @param message the message to display
+     * @return the parsed Date object
+     */
     private static Date getDateEntry(JFrame frame, String message) {
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
@@ -99,6 +106,15 @@ public class UI {
         return date;
     }
 
+    /**
+     * Prompts the user to enter an integer within a range.
+     *
+     * @param lowerLimit minimum acceptable value (exclusive)
+     * @param upperLimit maximum acceptable value (exclusive)
+     * @param frame the parent JFrame
+     * @param msg the prompt message
+     * @return the entered integer
+     */    
     private static int getIntEntry(int lowerLimit, int upperLimit, JFrame frame, String msg) {
         while (true) {
             String input = JOptionPane.showInputDialog(frame, msg);
@@ -132,6 +148,15 @@ public class UI {
         }
     }
 
+    /**
+     * Prompts the user to enter a double within a range.
+     *
+     * @param lowerLimit minimum acceptable value (exclusive)
+     * @param upperLimit maximum acceptable value (exclusive)
+     * @param frame the parent JFrame
+     * @param msg the prompt message
+     * @return the entered double
+     */
     private static double getDoubleEntry(double lowerLimit, 
                                       double upperLimit, JFrame frame, String msg) {
         while (true) {
@@ -166,6 +191,14 @@ public class UI {
         }
     }
 
+    /**
+     * Prompts the user with a yes/no dialog.
+     *
+     * @param frame the parent JFrame
+     * @param message the question message
+     * @param title the title of the dialog
+     * @return true if user selects "Yes", false otherwise
+     */    
     private static boolean getBoolEntry(JFrame frame, String message, String title) {
         int choice = JOptionPane.showOptionDialog(
             frame,  
@@ -180,6 +213,12 @@ public class UI {
         return choice == JOptionPane.YES_OPTION ? true : false;
     }
 
+    /**
+     * Prompts the user for mother information and manually creates a new Mother record.
+     *
+     * @param name the name of the mother
+     * @param frame the parent JFrame
+     */    
     private static void manualAddMother(String name, JFrame frame) {
         String midwifeName = JOptionPane.showInputDialog(
             "Enter the name of the midwife providing care to the mother:"
@@ -361,6 +400,11 @@ public class UI {
         );
     }
 
+    /**
+     * Prompts the user for a mother visit and adds it to the mother's record.
+     *
+     * @param frame the parent JFrame
+     */    
     private static void manualAddMotherVisit(JFrame frame) {
         String name = JOptionPane.showInputDialog(
             "Enter the name of Mother whose visit we're recording:"
@@ -462,6 +506,11 @@ public class UI {
         }
     }
 
+    /**
+     * Prompts the user to enter or update a midwife record.
+     *
+     * @param frame the parent JFrame
+     */
     private static void manualAddMidwife(JFrame frame) {
         String name = JOptionPane.showInputDialog("Enter the name of the midwife:");
         if (register.hasMidwife(name)) {
@@ -507,6 +556,12 @@ public class UI {
         register.addMidwife(name, midwife);
     }
 
+    /**
+     * Prompts the user to choose between manual or PDF entry for a record type.
+     *
+     * @param frame the parent JFrame
+     * @param recordType the type of record (e.g., "Mother Visit" or "Midwife Record")
+     */    
     private static void showOptionsDialog(JFrame frame, String recordType) {
         // Create a dialog with two options
         int choice = JOptionPane.showOptionDialog(
@@ -545,7 +600,11 @@ public class UI {
         }
     }
 
-    // Method to print the Mother Report
+    /**
+     * Prompts the user for a mother's name and registration number, and displays a summary report.
+     *
+     * @param frame the parent JFrame
+     */
     private static void printMotherReport(JFrame frame) {
         // Prompt the user for the mother's name
         String motherName = JOptionPane.showInputDialog(frame, "Enter the mother's name:");
@@ -590,7 +649,11 @@ public class UI {
         JOptionPane.showMessageDialog(frame, report.toString(), "Mother Report", JOptionPane.INFORMATION_MESSAGE);
     }
 
-    // Method to print the Midwife Report
+    /**
+     * Prompts the user for a month and year, then displays a summary of all midwife records.
+     *
+     * @param frame the parent JFrame
+     */
     private static void printMidwifeReport(JFrame frame) {
         // Prompt the user for the month
         String monthInput = JOptionPane.showInputDialog(frame, "Enter the month (1-12):");
