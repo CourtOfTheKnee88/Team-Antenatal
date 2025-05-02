@@ -87,6 +87,8 @@ public class MidwifePDFReader {
                         numMalesSeenPNC = Integer.parseInt(line.replace("Males Seen at PNC:", "").trim());
                     } else if (line.startsWith("Males Seen at FP:")) {
                         numMalesSeenFP = Integer.parseInt(line.replace("Males Seen at FP:", "").trim());
+                    } else if (line.startsWith("Name:")) {
+                        name = line.replace("Name:", "").trim();
                     }
                 }
             } else {
@@ -97,31 +99,49 @@ public class MidwifePDFReader {
         }
 
         // Create and return the Midwife object
-        return new Midwife(
-            name, institution, facilityType, district, subDistrict, region,
-            eocServices, otrCorner, conductsDelivery, transfusionServices,
-            numElectiveAbortions, numSpontaneousAbortions, numInducedAbortions,
-            numMVAsDone, numDCDone, numMalesSeenAtANC, numMalesSeenAtDEL,
-            numMalesSeenPNC, numMalesSeenFP
-        );
+        return new Midwife(institution, facilityType, district, subDistrict, region, eocServices, otrCorner,
+                conductsDelivery, transfusionServices, PMTCT, babyFriendlyServices, numOfRegistrants, attendances,
+                numOf4thVisits, TT2PlusVaccination, parity, ageOfMotherAtRegistration, mothersBelow150cm,
+                numOfSingleBirthMom, numOfTwinsMom, numOfTripletsMom, numOfOtherNumOfBirthsMom, numOfSingleBirthBaby,
+                numOfTwinsBaby, numOfTripletsBaby, numOfOtherNumOfBirthsBaby, totNumMoms, totNumBaby, numLiveMaleBirths,
+                numLiveFemaleBirths, numStillMaceratedBirths, numStillFreshBirths, numPrimparn, numMultiparn,
+                totalBelow2_5kgWeight, totalAbove2_5kgWeight, numOfDeliveries2PlusIPT, numOfMaternalDeaths,
+                numOfAuditedMaternalDeaths, numOfNeonatalDeaths, numOfPostneonatalDeaths, numNormalDelivery,
+                numCSection, numVacuumDelivery, numForcepDelivery, totalDeliveries, numOfMothers10to14,
+                numOfMothers15to19, numOfMothers20to24, numOfMothers25to29, numOfMothers30to34, numOfMothers35Plus,
+                numVesicoVaginalFistulaSeen, numVesicoVaginalFistulaRepaired, numVesicoVaginalFistulaReferred,
+                numReceivingOxytocin3rdStageLabor, numMothersInfantPairsOnlyBreastFeeding,
+                numMothersBreastFeedingWithin1Hour, numActiveMotherSupportGroups, numTrainedInLocationManagement,
+                numMalariaInPregnancy, numDropFootCase, numPuerperalPsychosis, numRegistrants, numSupervisedDelivery,
+                numNotSupervised, numNoANC, numPostPartumVitAMother, numBabyWeight7to10Days2_5kgBelow,
+                numBabyWeight7to10Days2_5kgAbove, numAntenatalReferrals, numLabourReferrals, numPostnatalReferrals,
+                birthAbnormalities, numRegistrants10to14, numRegistrants15to19, numRegistrants20to24,
+                numRegistrants25to29, numRegistrants30to34, numRegistrants35Above, numElectiveAbortions,
+                numSpontaneousAbortions, numInducedAbortions, numMVAsDone, numDCDone, numRegistrants10to14Abortions,
+                numRegistrants15to19Abortions, numRegistrants20to24Abortions, numRegistrants25to29Abortions,
+                numRegistrants30to34Abortions, numRegistrants35AboveAbortions, numBleedingOrHaemorrhage,
+                numSepsisOrInfectionAbortion, numPerforationsAbortions, totNumOfDeathsFromPostAbortionComplications,
+                numPACFPCounselled, numPACFPAccepting, numMalesSeenAtANC, numMalesSeenAtDEL, numMalesSeenPNC,
+                numMalesSeenFP);
     }
 
     private static void manualAddMidwife(JFrame frame) {
         String name = JOptionPane.showInputDialog("Enter the name of the midwife:");
         if (register.hasMidwife(name)) {
             int choice = JOptionPane.showOptionDialog(
-                frame,
-                "This name already exists in the records- continue and update?",
-                "Update Midwife?",
-                JOptionPane.YES_NO_OPTION,
-                JOptionPane.QUESTION_MESSAGE,
-                null,
-                new String[]{"Yes", "No"},
-                "Yes"
-            );
+                    frame,
+                    "This name already exists in the records- continue and update?",
+                    "Update Midwife?",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    new String[] { "Yes", "No" },
+                    "Yes");
             if (choice != JOptionPane.YES_OPTION)
                 return;
         }
+
+        // Prompt for midwife details
         String institution = JOptionPane.showInputDialog("Enter the name of the institution where the midwife works:");
         String facilityType = JOptionPane.showInputDialog("Enter the type of facility the midwife works at:");
         String district = JOptionPane.showInputDialog("Enter the district the midwife operates:");
@@ -141,13 +161,17 @@ public class MidwifePDFReader {
         int numMalesSeenPNC = getIntEntry(0, 1000, frame, "Enter the number of males seen at PNC:");
         int numMalesSeenFP = getIntEntry(0, 1000, frame, "Enter the number of males seen at FP:");
 
+        // Create a new Midwife object
         Midwife midwife = new Midwife(
-            name, institution, facilityType, district, subDistrict, region,
-            eocServices, otrCorner, conductsDelivery, transfusionServices,
-            numElectiveAbortions, numSpontaneousAbortions, numInducedAbortions,
-            numMVAsDone, numDCDone, numMalesSeenAtANC, numMalesSeenAtDEL,
-            numMalesSeenPNC, numMalesSeenFP
+                institution, facilityType, district, subDistrict, region, eocServices,
+                otrCorner, conductsDelivery, transfusionServices, false, false, // PMTCT and babyFriendlyServices default to false
+                0, 0, 0, 0, 0, 0, 0, // Antenatal-related fields default to 0
+                numElectiveAbortions, numSpontaneousAbortions, numInducedAbortions,
+                numMVAsDone, numDCDone, numMalesSeenAtANC, numMalesSeenAtDEL,
+                numMalesSeenPNC, numMalesSeenFP
         );
+
+        // Add the midwife to the register
         register.addMidwife(name, midwife);
     }
 }

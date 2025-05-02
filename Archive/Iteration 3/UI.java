@@ -545,14 +545,118 @@ public class UI {
         int numMalesSeenAtDEL = getIntEntry(0, 1000, frame, "Enter the number of males seen at delivery:");
         int numMalesSeenPNC = getIntEntry(0, 1000, frame, "Enter the number of males seen at PNC:");
         int numMalesSeenFP = getIntEntry(0, 1000, frame, "Enter the number of males seen at FP:");
-
-        Midwife midwife = new Midwife(
-            name, institution, facilityType, district, subDistrict, region,
-            eocServices, otrCorner, conductsDelivery, transfusionServices,
-            numElectiveAbortions, numSpontaneousAbortions, numInducedAbortions,
-            numMVAsDone, numDCDone, numMalesSeenAtANC, numMalesSeenAtDEL,
-            numMalesSeenPNC, numMalesSeenFP
+        int PMTCT = getIntEntry(0, 1000, frame, "Enter the number of PMTCT cases:");
+        int babyFriendlyServices = getIntEntry(0, 1000, frame, "Enter the number of baby friendly services:");
+        int numOfRegistrants = getIntEntry(0, 1000, frame, "Enter the number of registrants:");
+        int attendances = getIntEntry(0, 1000, frame, "Enter the number of attendances:");
+        int numOf4thVisits = getIntEntry(0, 1000, frame, "Enter the number of 4th visits:");
+        int TT2PlusVaccination = getIntEntry(0, 1000, frame, "Enter the number of TT2+ vaccinations:");
+        int parity = getIntEntry(0, 1000, frame, "Enter the parity:");
+        int ageOfMotherAtRegistration = getIntEntry(0, 100, frame, "Enter the age of the mother at registration:");
+        int mothersBelow150cm = getIntEntry(0, 1000, frame, "Enter the number of mothers below 150 cm:");
+        int numOfSingleBirthMom = getIntEntry(0, 1000, frame, "Enter the number of single birth mothers:");
+        int numOfTwinsMom = getIntEntry(0, 1000, frame, "Enter the number of twin mothers:");
+        int numOfTripletsMom = getIntEntry(0, 1000, frame, "Enter the number of triplet mothers:");
+        int numOfOtherNumOfBirthsMom = getIntEntry(0, 1000, frame, "Enter the number of other births mothers:");
+        int numOfSingleBirthBaby = getIntEntry(0, 1000, frame, "Enter the number of single birth babies:");
+        int numOfTwinsBaby = getIntEntry(0, 1000, frame, "Enter the number of twin babies:");
+        int numOfTripletsBaby = getIntEntry(0, 1000, frame, "Enter the number of triplet babies:");
+        int numOfOtherNumOfBirthsBaby = getIntEntry(0, 1000, frame, "Enter the number of other births babies:");
+        int totNumMoms = getIntEntry(0, 1000, frame, "Enter the total number of mothers:");
+        int totNumBaby = getIntEntry(0, 1000, frame, "Enter the total number of babies:");
+        int numLiveMaleBirths = getIntEntry(0, 1000, frame, "Enter the number of live male births:");
+        int numLiveFemaleBirths = getIntEntry(0, 1000, frame, "Enter the number of live female births:");
+        int numStillMaceratedBirths = getIntEntry(0, 1000, frame, "Enter the number of still macerated births:");
+        int numStillFreshBirths = getIntEntry(0, 1000, frame, "Enter the number of still fresh births:");
+        int numPrimparn = getIntEntry(0, 1000, frame, "Enter the number of primparn:");
+        int numMultiparn = getIntEntry(0, 1000, frame, "Enter the number of multiparn:");
+        int totalBelow2_5kgWeight = getIntEntry(0, 1000, frame, "Enter the total weight of babies below 2.5 kg:");
+        int totalAbove2_5kgWeight = getIntEntry(0, 1000, frame, "Enter the total weight of babies above 2.5 kg:");
+        int numOfDeliveries2PlusIPT = getIntEntry(0, 1000, frame, "Enter the number of deliveries with 2+ IPT:");
+        int numOfMaternalDeaths = getIntEntry(0, 1000, frame, "Enter the number of maternal deaths:");
+        int numOfAuditedMaternalDeaths = getIntEntry(0, 1000, frame, "Enter the number of audited maternal deaths:");
+        int numOfNeonatalDeaths = getIntEntry(0, 1000, frame, "Enter the number of neonatal deaths:");
+        int numOfPostneonatalDeaths = getIntEntry(0, 1000, frame, "Enter the number of post-neonatal deaths:");
+        int numNormalDelivery = getIntEntry(0, 1000, frame, "Enter the number of normal deliveries:");
+        int numCSection = getIntEntry(0, 1000, frame, "Enter the number of C-sections:");
+        int numVacuumDelivery = getIntEntry(0, 1000, frame, "Enter the number of vacuum deliveries:");
+        int numForcepDelivery = getIntEntry(0, 1000, frame, "Enter the number of forcep deliveries:");
+        int totalDeliveries = getIntEntry(0, 1000, frame, "Enter the total number of deliveries:");
+        int numOfMothers10to14 = getIntEntry(0, 1000, frame, "Enter the number of mothers aged 10-14:");
+        int numOfMothers15to19 = getIntEntry(0, 1000, frame, "Enter the number of mothers aged 15-19:");
+        int numOfMothers20to24 = getIntEntry(0, 1000, frame, "Enter the number of mothers aged 20-24:");
+        int numOfMothers25to29 = getIntEntry(0, 1000, frame, "Enter the number of mothers aged 25-29:");
+        int numOfMothers30to34 = getIntEntry(0, 1000, frame, "Enter the number of mothers aged 30-34:");
+        int numOfMothers35Plus = getIntEntry(0, 1000, frame, "Enter the number of mothers aged 35+:");
+        int numVesicoVaginalFistulaSeen = getIntEntry(0, 1000, frame, "Enter the number of vesico-vaginal fistula seen:");
+        int numVesicoVaginalFistulaRepaired = getIntEntry(0, 1000, frame, "Enter the number of vesico-vaginal fistula repaired:");
+        int numVesicoVaginalFistulaReferred = getIntEntry(0, 1000, frame, "Enter the number of vesico-vaginal fistula referred:");
+        int numReceivingOxytocin3rdStageLabor = getIntEntry(0, 1000, frame, "Enter the number of mothers receiving oxytocin in 3rd stage labor:");
+        int numMothersInfantPairsOnlyBreastFeeding = getIntEntry(0, 1000, frame, "Enter the number of mothers with infant pairs only breast feeding:");
+        int numMothersBreastFeedingWithin1Hour = getIntEntry(0, 1000, frame, "Enter the number of mothers breast feeding within 1 hour:");
+        int numActiveMotherSupportGroups = getIntEntry(0, 1000, frame, "Enter the number of active mother support groups:");
+        int numTrainedInLocationManagement = getIntEntry(0, 1000, frame, "Enter the number of trained in location management:");
+        int numMalariaInPregnancy = getIntEntry(0, 1000, frame, "Enter the number of malaria in pregnancy cases:");
+        int numDropFootCase = getIntEntry(0, 1000, frame, "Enter the number of drop foot cases:");
+        int numPuerperalPsychosis = getIntEntry(0, 1000, frame, "Enter the number of puerperal psychosis cases:");
+        int numRegistrants = getIntEntry(0, 1000, frame, "Enter the number of registrants:");
+        int numSupervisedDelivery = getIntEntry(0, 1000, frame, "Enter the number of supervised deliveries:");
+        int numNotSupervised = getIntEntry(0, 1000, frame, "Enter the number of not supervised deliveries:");
+        int numNoANC = getIntEntry(0, 1000, frame, "Enter the number of mothers with no ANC:");
+        int numPostPartumVitAMother = getIntEntry(0, 1000, frame, "Enter the number of mothers receiving post-partum vitamin A:");
+        int numBabyWeight7to10Days2_5kgBelow = getIntEntry(0, 1000, frame, "Enter the number of babies weighing 2.5 kg or less at 7-10 days:");
+        int numBabyWeight7to10Days2_5kgAbove = getIntEntry(0, 1000, frame, "Enter the number of babies weighing more than 2.5 kg at 7-10 days:");
+        int numAntenatalReferrals = getIntEntry(0, 1000, frame, "Enter the number of antenatal referrals:");
+        int numLabourReferrals = getIntEntry(0, 1000, frame, "Enter the number of labor referrals:");
+        int numPostnatalReferrals = getIntEntry(0, 1000, frame, "Enter the number of postnatal referrals:");
+        String birthAbnormalities = JOptionPane.showInputDialog(
+            "Enter any birth abnormalities:"
         );
+        int numRegistrants10to14 = getIntEntry(0, 1000, frame, "Enter the number of registrants aged 10-14:");
+        int numRegistrants15to19 = getIntEntry(0, 1000, frame, "Enter the number of registrants aged 15-19:");
+        int numRegistrants20to24 = getIntEntry(0, 1000, frame, "Enter the number of registrants aged 20-24:");
+        int numRegistrants25to29 = getIntEntry(0, 1000, frame, "Enter the number of registrants aged 25-29:");
+        int numRegistrants30to34 = getIntEntry(0, 1000, frame, "Enter the number of registrants aged 30-34:");
+        int numRegistrants35Above = getIntEntry(0, 1000, frame, "Enter the number of registrants aged 35 and above:");
+        int numRegistrants10to14Abortions = getIntEntry(0, 1000, frame, "Enter the number of registrants aged 10-14 for abortions:");
+        int numRegistrants15to19Abortions = getIntEntry(0, 1000, frame, "Enter the number of registrants aged 15-19 for abortions:");
+        int numRegistrants20to24Abortions = getIntEntry(0, 1000, frame, "Enter the number of registrants aged 20-24 for abortions:");
+        int numRegistrants25to29Abortions = getIntEntry(0, 1000, frame, "Enter the number of registrants aged 25-29 for abortions:");
+        int numRegistrants30to34Abortions = getIntEntry(0, 1000, frame, "Enter the number of registrants aged 30-34 for abortions:");
+        int numRegistrants35AboveAbortions = getIntEntry(0, 1000, frame, "Enter the number of registrants aged 35 and above for abortions:");
+        int numBleedingOrHaemorrhage = getIntEntry(0, 1000, frame, "Enter the number of cases of bleeding or hemorrhage:");
+        int numSepsisOrInfectionAbortion = getIntEntry(0, 1000, frame, "Enter the number of cases of sepsis or infection during abortion:");
+        int numPerforationsAbortions = getIntEntry(0, 1000, frame, "Enter the number of perforations during abortions:");
+        int totNumOfDeathsFromPostAbortionComplications = getIntEntry(0, 1000, frame, "Enter the total number of deaths from post-abortion complications:");
+        int numPACFPCounselled = getIntEntry(0, 1000, frame, "Enter the number of PAC/FP counseled:");
+        int numPACFPAccepting = getIntEntry(0, 1000, frame, "Enter the number of PAC/FP accepting:");
+
+
+        Midwife midwife = new Midwife(institution, facilityType, district, subDistrict, region, eocServices, otrCorner,
+        conductsDelivery, transfusionServices, PMTCT, babyFriendlyServices, numOfRegistrants, attendances,
+        numOf4thVisits, TT2PlusVaccination, parity, ageOfMotherAtRegistration, mothersBelow150cm,
+        numOfSingleBirthMom, numOfTwinsMom, numOfTripletsMom, numOfOtherNumOfBirthsMom, numOfSingleBirthBaby,
+        numOfTwinsBaby, numOfTripletsBaby, numOfOtherNumOfBirthsBaby, totNumMoms, totNumBaby, numLiveMaleBirths,
+        numLiveFemaleBirths, numStillMaceratedBirths, numStillFreshBirths, numPrimparn, numMultiparn,
+        totalBelow2_5kgWeight, totalAbove2_5kgWeight, numOfDeliveries2PlusIPT, numOfMaternalDeaths,
+        numOfAuditedMaternalDeaths, numOfNeonatalDeaths, numOfPostneonatalDeaths, numNormalDelivery,
+        numCSection, numVacuumDelivery, numForcepDelivery, totalDeliveries, numOfMothers10to14,
+        numOfMothers15to19, numOfMothers20to24, numOfMothers25to29, numOfMothers30to34, numOfMothers35Plus,
+        numVesicoVaginalFistulaSeen, numVesicoVaginalFistulaRepaired, numVesicoVaginalFistulaReferred,
+        numReceivingOxytocin3rdStageLabor, numMothersInfantPairsOnlyBreastFeeding,
+        numMothersBreastFeedingWithin1Hour, numActiveMotherSupportGroups, numTrainedInLocationManagement,
+        numMalariaInPregnancy, numDropFootCase, numPuerperalPsychosis, numRegistrants, numSupervisedDelivery,
+        numNotSupervised, numNoANC, numPostPartumVitAMother, numBabyWeight7to10Days2_5kgBelow,
+        numBabyWeight7to10Days2_5kgAbove, numAntenatalReferrals, numLabourReferrals, numPostnatalReferrals,
+        birthAbnormalities, numRegistrants10to14, numRegistrants15to19, numRegistrants20to24,
+        numRegistrants25to29, numRegistrants30to34, numRegistrants35Above, numElectiveAbortions,
+        numSpontaneousAbortions, numInducedAbortions, numMVAsDone, numDCDone, numRegistrants10to14Abortions,
+        numRegistrants15to19Abortions, numRegistrants20to24Abortions, numRegistrants25to29Abortions,
+        numRegistrants30to34Abortions, numRegistrants35AboveAbortions, numBleedingOrHaemorrhage,
+        numSepsisOrInfectionAbortion, numPerforationsAbortions, totNumOfDeathsFromPostAbortionComplications,
+        numPACFPCounselled, numPACFPAccepting, numMalesSeenAtANC, numMalesSeenAtDEL, numMalesSeenPNC,
+        numMalesSeenFP
+        ); // Ensure the Midwife class constructor matches these arguments
         register.addMidwife(name, midwife);
     }
 
@@ -650,7 +754,8 @@ public class UI {
     }
 
     /**
-     * Prompts the user for a month and year, then displays a summary of all midwife records.
+     * Prompts the user for a month and year, then displays a summary of all midwife records
+     * relevant to that period.
      *
      * @param frame the parent JFrame
      */
@@ -693,17 +798,26 @@ public class UI {
 
         // Generate the report for the specified month and year
         StringBuilder report = new StringBuilder("Midwife Report for " + month + "/" + year + ":\n\n");
+        boolean hasRelevantData = false;
+
         for (Midwife midwife : register.getMidwives()) {
-            // Assuming midwife data is relevant for the given month/year
-            report.append("Name: ").append(midwife.getName()).append("\n");
-            report.append("Institution: ").append(midwife.getInstitution()).append("\n");
-            report.append("Facility Type: ").append(midwife.getFacilityType()).append("\n");
-            report.append("Region: ").append(midwife.getRegion()).append("\n");
-            report.append("Conducts Deliveries: ").append(midwife.isConductsDelivery() ? "Yes" : "No").append("\n");
-            report.append("--------------------------------------------------\n");
+            // Assuming midwife data includes a method to check relevance for the given month/year
+            if (midwife.isRelevantForMonthYear(month, year)) {
+                hasRelevantData = true;
+                report.append("Name: ").append(midwife.getName()).append("\n");
+                report.append("Institution: ").append(midwife.getInstitution()).append("\n");
+                report.append("Facility Type: ").append(midwife.getFacilityType()).append("\n");
+                report.append("Region: ").append(midwife.getRegion()).append("\n");
+                report.append("Conducts Deliveries: ").append(midwife.isConductsDelivery() ? "Yes" : "No").append("\n");
+                report.append("--------------------------------------------------\n");
+            }
         }
 
-        // Display the report
-        JOptionPane.showMessageDialog(frame, report.toString(), "Midwife Report", JOptionPane.INFORMATION_MESSAGE);
+        // Display the report or show a message if no data is found
+        if (hasRelevantData) {
+            JOptionPane.showMessageDialog(frame, report.toString(), "Midwife Report", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(frame, "No midwife records found for " + month + "/" + year + ".", "Midwife Report", JOptionPane.INFORMATION_MESSAGE);
+        }
     }
 }
