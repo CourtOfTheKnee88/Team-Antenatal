@@ -1,8 +1,15 @@
 
+import java.io.File;
+import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.text.PDFTextStripper;
 
 
 /**
@@ -131,6 +138,81 @@ public class Mother extends Patient {
         this.iptMalariaDoses = iptMalariaDoses;
         this.itnInUse = itnInUse;
         this.visits = new ArrayList<>();
+    }
+
+    public Mother(String pdfFilePath) throws IOException {
+        super("Unknown", new Date(), "Unknown", "Unknown", "Unknown", "Unknown"); // Provide default values for Patient constructor
+      File file = new File(pdfFilePath);
+        if (!file.exists()) {
+            throw new IOException("File not found: " + pdfFilePath);
+        }
+        try (PDDocument document = PDDocument.load(file)) {
+            if (!document.isEncrypted()) {
+                PDFTextStripper pdfStripper = new PDFTextStripper();
+                pdfStripper.setStartPage(1); // Read only the first page
+                pdfStripper.setEndPage(1);
+
+                String text = pdfStripper.getText(document);
+
+                // Process the extracted text to populate variables
+                String[] lines = text.split("\n");
+                SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy"); // Adjust format as needed
+
+                for (String line : lines) {
+                    if (line.startsWith("Midwife Name:")) {
+                        midwifeName = line.replace("Midwife Name:", "").trim();
+                    } else if (line.startsWith("Age:")) {
+                        age = Integer.parseInt(line.replace("Age:", "").trim());
+                    } else if (line.startsWith("Registration Number:")) {
+                        registrationNumber = Integer.parseInt(line.replace("Registration Number:", "").trim());
+                    } else if (line.startsWith("Height:")) {
+                        height = Double.parseDouble(line.replace("Height:", "").trim());
+                    } else if (line.startsWith("Facility Zone:")) {
+                        facilityZone = line.replace("Facility Zone:", "").trim();
+                    } else if (line.startsWith("Sub District:")) {
+                        subDistrict = line.replace("Sub District:", "").trim();
+                    } else if (line.startsWith("Sickling Type:")) {
+                        sicklingType = line.replace("Sickling Type:", "").trim();
+                    } else if (line.startsWith("Sickling Blood:")) {
+                        sicklingBlood = Boolean.parseBoolean(line.replace("Sickling Blood:", "").trim());
+                    } else if (line.startsWith("Blood Group:")) {
+                        bloodGroup = line.replace("Blood Group:", "").trim();
+                    } else if (line.startsWith("Hg at Registry:")) {
+                        hgAtRegistry = Double.parseDouble(line.replace("Hg at Registry:", "").trim());
+                    } else if (line.startsWith("Hg at 36 Weeks:")) {
+                        hgAt36Wks = Double.parseDouble(line.replace("Hg at 36 Weeks:", "").trim());
+                    } else if (line.startsWith("Estimated Due Date:")) {
+                        try {
+                            estimatedDueDate = dateFormat.parse(line.replace("Estimated Due Date:", "").trim());
+                        } catch (ParseException e) {
+                            throw new IOException("Invalid date format for Estimated Due Date.", e);
+                        }
+                    } else if (line.startsWith("Parity:")) {
+                        parity = Integer.parseInt(line.replace("Parity:", "").trim());
+                    } else if (line.startsWith("VDRL Administered:")) {
+                        vdrlAdministered = Boolean.parseBoolean(line.replace("VDRL Administered:", "").trim());
+                    } else if (line.startsWith("VDRL Status:")) {
+                        vdrlStatus = Boolean.parseBoolean(line.replace("VDRL Status:", "").trim());
+                    } else if (line.startsWith("HIV Pre-Counseling:")) {
+                        hivPreCounseling = Boolean.parseBoolean(line.replace("HIV Pre-Counseling:", "").trim());
+                    } else if (line.startsWith("Gestational Age:")) {
+                        gestationalAge = Integer.parseInt(line.replace("Gestational Age:", "").trim());
+                    } else if (line.startsWith("Tetanus Toxoid Status:")) {
+                        tetanusToxoidStatus = Boolean.parseBoolean(line.replace("Tetanus Toxoid Status:", "").trim());
+                    } else if (line.startsWith("Tetanus Toxoid Doses:")) {
+                        tetanusToxoidDoses = Integer.parseInt(line.replace("Tetanus Toxoid Doses:", "").trim());
+                    } else if (line.startsWith("IPT Malaria Doses:")) {
+                        iptMalariaDoses = Integer.parseInt(line.replace("IPT Malaria Doses:", "").trim());
+                    } else if (line.startsWith("ITN In Use:")) {
+                        itnInUse = Boolean.parseBoolean(line.replace("ITN In Use:", "").trim());
+                    }
+                }
+            } else {
+                throw new IOException("The PDF is encrypted and cannot be read.");
+            }
+        } catch (Exception e) {
+            throw new IOException("Error processing the PDF file: " + e.getMessage(), e);
+        }
     }
 
     /** @return name of the assigned midwife */

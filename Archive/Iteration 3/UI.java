@@ -74,7 +74,7 @@ public class UI {
     /**
      * Prompts the user to enter a date via a dialog, and parses it.
      * 
-     * @param frame the parent JFrame
+     * @param frame   the parent JFrame
      * @param message the message to display
      * @return the parsed Date object
      */
@@ -111,10 +111,10 @@ public class UI {
      *
      * @param lowerLimit minimum acceptable value (exclusive)
      * @param upperLimit maximum acceptable value (exclusive)
-     * @param frame the parent JFrame
-     * @param msg the prompt message
+     * @param frame      the parent JFrame
+     * @param msg        the prompt message
      * @return the entered integer
-     */    
+     */
     private static int getIntEntry(int lowerLimit, int upperLimit, JFrame frame, String msg) {
         while (true) {
             String input = JOptionPane.showInputDialog(frame, msg);
@@ -128,16 +128,14 @@ public class UI {
                 int intInput = Integer.parseInt(input);
 
                 if (intInput <= lowerLimit) {
-                    JOptionPane.showMessageDialog(frame, 
-                        String.format("Please input a number larger than %d.", lowerLimit)
-                    );
-                    continue;   
+                    JOptionPane.showMessageDialog(frame,
+                            String.format("Please input a number larger than %d.", lowerLimit));
+                    continue;
                 }
                 if (intInput >= upperLimit) {
-                    JOptionPane.showMessageDialog(frame, 
-                        String.format("Please input a number smaller than %d.", upperLimit)
-                    );
-                    continue;   
+                    JOptionPane.showMessageDialog(frame,
+                            String.format("Please input a number smaller than %d.", upperLimit));
+                    continue;
                 }
 
                 return intInput;
@@ -153,12 +151,12 @@ public class UI {
      *
      * @param lowerLimit minimum acceptable value (exclusive)
      * @param upperLimit maximum acceptable value (exclusive)
-     * @param frame the parent JFrame
-     * @param msg the prompt message
+     * @param frame      the parent JFrame
+     * @param msg        the prompt message
      * @return the entered double
      */
-    private static double getDoubleEntry(double lowerLimit, 
-                                      double upperLimit, JFrame frame, String msg) {
+    private static double getDoubleEntry(double lowerLimit,
+            double upperLimit, JFrame frame, String msg) {
         while (true) {
             String input = JOptionPane.showInputDialog(frame, msg);
 
@@ -171,16 +169,14 @@ public class UI {
                 double doubleInput = Double.parseDouble(input);
 
                 if (doubleInput <= lowerLimit) {
-                    JOptionPane.showMessageDialog(frame, 
-                        String.format("Please input a number larger than %f.", lowerLimit)
-                    );
-                    continue;   
+                    JOptionPane.showMessageDialog(frame,
+                            String.format("Please input a number larger than %f.", lowerLimit));
+                    continue;
                 }
                 if (doubleInput >= upperLimit) {
-                    JOptionPane.showMessageDialog(frame, 
-                        String.format("Please input a number smaller than %f.", upperLimit)
-                    );
-                    continue;   
+                    JOptionPane.showMessageDialog(frame,
+                            String.format("Please input a number smaller than %f.", upperLimit));
+                    continue;
                 }
 
                 return doubleInput;
@@ -194,272 +190,237 @@ public class UI {
     /**
      * Prompts the user with a yes/no dialog.
      *
-     * @param frame the parent JFrame
+     * @param frame   the parent JFrame
      * @param message the question message
-     * @param title the title of the dialog
+     * @param title   the title of the dialog
      * @return true if user selects "Yes", false otherwise
-     */    
+     */
     private static boolean getBoolEntry(JFrame frame, String message, String title) {
         int choice = JOptionPane.showOptionDialog(
-            frame,  
-            message,
-            title,
-            JOptionPane.YES_NO_OPTION,
-            JOptionPane.QUESTION_MESSAGE,
-            null,
-            new String[]{"Yes", "No"},
-            "Yes"
-        );
+                frame,
+                message,
+                title,
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                new String[] { "Yes", "No" },
+                "Yes");
         return choice == JOptionPane.YES_OPTION ? true : false;
     }
 
     /**
-     * Prompts the user for mother information and manually creates a new Mother record.
+     * Prompts the user for mother information and manually creates a new Mother
+     * record.
      *
-     * @param name the name of the mother
+     * @param name  the name of the mother
      * @param frame the parent JFrame
-     */    
+     */
     private static void manualAddMother(String name, JFrame frame) {
         String midwifeName = JOptionPane.showInputDialog(
-            "Enter the name of the midwife providing care to the mother:"
-        );
+                "Enter the name of the midwife providing care to the mother:");
         if (!register.hasMidwife(midwifeName)) {
             int choice = JOptionPane.showOptionDialog(
-                frame,  
-                "This midwife doesn't exist in the records- add now?",
-                "Add New Midwife?",
-                JOptionPane.YES_NO_OPTION,
-                JOptionPane.QUESTION_MESSAGE,
-                null,
-                new String[]{"Yes", "No"},
-                "Yes"
-            );
+                    frame,
+                    "This midwife doesn't exist in the records- add now?",
+                    "Add New Midwife?",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    new String[] { "Yes", "No" },
+                    "Yes");
             if (choice == JOptionPane.YES_OPTION)
                 manualAddMidwife(frame);
         }
         Date dateOfBirth = getDateEntry(frame,
-            "Enter the mother's date of birth (MM/dd/yyyy):"
-        );
+                "Enter the mother's date of birth (MM/dd/yyyy):");
         String patientId = JOptionPane.showInputDialog(
-            "Enter the mother's patient id:"
-        );
+                "Enter the mother's patient id:");
         // ???
         String mothersId = JOptionPane.showInputDialog(
-            "Enter the id of the mother's mother:"
-        );
+                "Enter the id of the mother's mother:");
         String sex = JOptionPane.showInputDialog(
-            "Enter the sex of the mother:"
-        );
+                "Enter the sex of the mother:");
         String address = JOptionPane.showInputDialog(
-            "Enter the address of the mother:"
-        );
-        int age = getIntEntry(17, 100, frame, 
-        "Please enter the age of the mother:"
-        );
+                "Enter the address of the mother:");
+        int age = getIntEntry(17, 100, frame,
+                "Please enter the age of the mother:");
         int registrationNumber = register.getMothers().size() + 1;
         double height = getDoubleEntry(
-            0, 
-            304, 
-            frame, 
-            "Enter the height of the mother (in cm):"
-        );
+                0,
+                304,
+                frame,
+                "Enter the height of the mother (in cm):");
         Trimester trimester = null;
         while (trimester == null) {
             trimester = (Trimester) JOptionPane.showInputDialog(
-                null,
-                "Select a Trimester:",
-                "Trimester",
-                JOptionPane.QUESTION_MESSAGE,
-                null,
-                Trimester.values(),
-                Trimester.values()[0]
-            );
+                    null,
+                    "Select a Trimester:",
+                    "Trimester",
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    Trimester.values(),
+                    Trimester.values()[0]);
             if (trimester == null) {
                 JOptionPane.showMessageDialog(frame, "Please select a trimester.");
             }
         }
         String facilityZone = JOptionPane.showInputDialog(
-            "Enter the facility zone of the mother:"
-        );
+                "Enter the facility zone of the mother:");
         String subDistrict = JOptionPane.showInputDialog(
-            "Enter the sub district of the mother:"
-        );
+                "Enter the sub district of the mother:");
         boolean sicklingBlood = getBoolEntry(
-            frame, 
-            "Does the mother have Sickling Cell disease?", 
-            "Sickling Cell Disease?"
-        );
+                frame,
+                "Does the mother have Sickling Cell disease?",
+                "Sickling Cell Disease?");
         String sicklingType = "";
         if (sicklingBlood) {
             sicklingType = JOptionPane.showInputDialog(
-                "Enter the mother's Sickling type:"
-            );
+                    "Enter the mother's Sickling type:");
         }
         String bloodGroup = JOptionPane.showInputDialog(
-            "Enter the blood type of the mother:"
-        );
+                "Enter the blood type of the mother:");
         double hgAtRegistry = getDoubleEntry(
-            0, 
-            1000, 
-            frame, 
-            "Enter the blood pressure of the mother:"
-        );
+                0,
+                1000,
+                frame,
+                "Enter the blood pressure of the mother:");
         Date estimatedDueDate = getDateEntry(
-            frame, 
-        "Enter the expected due date of the mother:"
-        );
+                frame,
+                "Enter the expected due date of the mother:");
         int parity = getIntEntry(
-            -1, 
-            10000, 
-            frame, 
-            "Enter the number of times the mother has given birth with a gestational age of 24 weeks or more:"
-        );
+                -1,
+                10000,
+                frame,
+                "Enter the number of times the mother has given birth with a gestational age of 24 weeks or more:");
         boolean vdrlAdministered = getBoolEntry(
-            frame, 
-            "Has the mother have had a VDRL?", 
-            "VDRL?"
-        );
+                frame,
+                "Has the mother have had a VDRL?",
+                "VDRL?");
         boolean vdrlStatus = false;
         if (vdrlAdministered) {
             vdrlStatus = getBoolEntry(
-                frame, 
-                "Was the result positive?", 
-                "VDRL?"
-            );
+                    frame,
+                    "Was the result positive?",
+                    "VDRL?");
         }
         boolean hivPreCounseling = getBoolEntry(
-            frame, 
-            "Has the mother been given counseling about HIV?", 
-            "HIV Counseling?"
-        );
+                frame,
+                "Has the mother been given counseling about HIV?",
+                "HIV Counseling?");
         int gestationalAge = getIntEntry(
-            -1, 
-            1000, 
-            frame, 
-            "Enter the gestational age of the pregnancy:"
-        );
+                -1,
+                1000,
+                frame,
+                "Enter the gestational age of the pregnancy:");
         boolean tetanusToxoidStatus = getBoolEntry(
-            frame, 
-            "Has the mother been immunized against Tetanus?", 
-            "Tetanus Immunization"
-        );
+                frame,
+                "Has the mother been immunized against Tetanus?",
+                "Tetanus Immunization");
         int tetanusToxoidDoses = 0;
         if (tetanusToxoidStatus) {
             tetanusToxoidDoses = getIntEntry(
-                0, 
-                4, 
-                frame, 
-                "How many doses of the vaccine have they recieved?"
-            );
+                    0,
+                    4,
+                    frame,
+                    "How many doses of the vaccine have they recieved?");
         }
         int iptMalariaDoses = getIntEntry(
-            0, 
-            4, 
-            frame, 
-            "How many doses of antivirals against Malaria has the mother recieved?"
-        );
+                0,
+                4,
+                frame,
+                "How many doses of antivirals against Malaria has the mother recieved?");
         boolean itnInUse = getBoolEntry(
-            frame, 
-            "Has the mother been using an ITN (Insecticide-Treated Net)?",
-            "ITN Net?"
-        );
+                frame,
+                "Has the mother been using an ITN (Insecticide-Treated Net)?",
+                "ITN Net?");
         Mother newMother = new Mother(
-            midwifeName,
-            name, 
-            dateOfBirth, 
-            patientId, 
-            mothersId, 
-            sex, 
-            address, 
-            age, 
-            registrationNumber, 
-            height, 
-            trimester, 
-            facilityZone, 
-            subDistrict, 
-            sicklingType, 
-            sicklingBlood, 
-            bloodGroup, 
-            hgAtRegistry, 
-            0, 
-            estimatedDueDate, 
-            parity, 
-            vdrlAdministered, 
-            vdrlStatus, 
-            hivPreCounseling, 
-            gestationalAge, 
-            tetanusToxoidStatus, 
-            tetanusToxoidDoses, 
-            iptMalariaDoses, 
-            itnInUse
-        );
+                midwifeName,
+                name,
+                dateOfBirth,
+                patientId,
+                mothersId,
+                sex,
+                address,
+                age,
+                registrationNumber,
+                height,
+                trimester,
+                facilityZone,
+                subDistrict,
+                sicklingType,
+                sicklingBlood,
+                bloodGroup,
+                hgAtRegistry,
+                0,
+                estimatedDueDate,
+                parity,
+                vdrlAdministered,
+                vdrlStatus,
+                hivPreCounseling,
+                gestationalAge,
+                tetanusToxoidStatus,
+                tetanusToxoidDoses,
+                iptMalariaDoses,
+                itnInUse);
         register.addMother(name, newMother);
         JOptionPane.showMessageDialog(
-            frame,
-            String.format("Added %s to the registry!", name)
-        );
+                frame,
+                String.format("Added %s to the registry!", name));
     }
 
     /**
      * Prompts the user for a mother visit and adds it to the mother's record.
      *
      * @param frame the parent JFrame
-     */    
+     */
     private static void manualAddMotherVisit(JFrame frame) {
         String name = JOptionPane.showInputDialog(
-            "Enter the name of Mother whose visit we're recording:"
-        );
+                "Enter the name of Mother whose visit we're recording:");
         if (!register.hasMother(name)) {
             int choice = JOptionPane.showOptionDialog(
-                frame,  
-                "This name doesn't exist in the records- add new mother?",
-                "Add New Mother?",
-                JOptionPane.YES_NO_OPTION,
-                JOptionPane.QUESTION_MESSAGE,
-                null,
-                new String[]{"Yes", "No"},
-                "Yes"
-            );
+                    frame,
+                    "This name doesn't exist in the records- add new mother?",
+                    "Add New Mother?",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    new String[] { "Yes", "No" },
+                    "Yes");
             if (choice == JOptionPane.YES_OPTION)
                 manualAddMother(name, frame);
-            else return;
+            else
+                return;
             Mother mother = register.getMother(name);
             boolean hivResult = getBoolEntry(
-                frame, 
-                "Has the mother tested positive for HIV since the last visit?", 
-                "HIV?"
-            );
+                    frame,
+                    "Has the mother tested positive for HIV since the last visit?",
+                    "HIV?");
             boolean hivPostCounseling = false;
             boolean arvAdministered = false;
             if (hivResult) {
                 hivPostCounseling = getBoolEntry(
-                    frame, 
-                    "Has the mother recieved counciling about their HIV diagnosis?", 
-                    "HIV Counciling?"
-                );
+                        frame,
+                        "Has the mother recieved counciling about their HIV diagnosis?",
+                        "HIV Counciling?");
                 arvAdministered = getBoolEntry(
-                    frame, 
-                    "Has the mother started Antiretroviral therapy?", 
-                    "Antiretroviral Therapy?"
-                );
+                        frame,
+                        "Has the mother started Antiretroviral therapy?",
+                        "Antiretroviral Therapy?");
             }
             Date date = getDateEntry(
-                frame, 
-                "Enter the date of the visit:"
-            );
+                    frame,
+                    "Enter the date of the visit:");
             int visitNumber = mother.getVisits().size() + 1;
             double fundalHeight = getDoubleEntry(
-                0,
-                1000,
-                frame,
-                "Enter the Fundal Height of the mother:"
-            );
+                    0,
+                    1000,
+                    frame,
+                    "Enter the Fundal Height of the mother:");
             double bloodPressure = getDoubleEntry(
-                0,
-                10000,
-                frame,
-                "Enter the blood pressure of the mother:"
-            );
+                    0,
+                    10000,
+                    frame,
+                    "Enter the blood pressure of the mother:");
 
             // Set blood pressure at 36 weeks if applicable.
             long diffInMillis = Math.abs(date.getTime() - mother.getEstimatedConceptionDate().getTime());
@@ -469,40 +430,34 @@ public class UI {
             }
 
             boolean breastFeedingEd = getBoolEntry(
-                frame,
-                "Has the mother recieved education about breast feeding?",
-                "Breast Feeding Ed?"
-            );
+                    frame,
+                    "Has the mother recieved education about breast feeding?",
+                    "Breast Feeding Ed?");
             double weight = getDoubleEntry(
-                0,
-                10000,
-                frame,
-                "Enter the current weight of the mother (in kg):"
-            );
+                    0,
+                    10000,
+                    frame,
+                    "Enter the current weight of the mother (in kg):");
             String complaints = JOptionPane.showInputDialog(
-                "Enter any complaints from the mother:"
-            );
+                    "Enter any complaints from the mother:");
             String remarks = JOptionPane.showInputDialog(
-                "Enter any other remarks here:"
-            );
+                    "Enter any other remarks here:");
             Visit visit = new Visit(
-                hivResult,
-                hivPostCounseling,
-                arvAdministered,
-                date,
-                visitNumber,
-                fundalHeight,
-                bloodPressure,
-                breastFeedingEd,
-                weight,
-                complaints,
-                remarks
-            );
+                    hivResult,
+                    hivPostCounseling,
+                    arvAdministered,
+                    date,
+                    visitNumber,
+                    fundalHeight,
+                    bloodPressure,
+                    breastFeedingEd,
+                    weight,
+                    complaints,
+                    remarks);
             mother.addVisit(visit);
             JOptionPane.showMessageDialog(
-                frame,
-                "Visit has been recorded!"
-            );
+                    frame,
+                    "Visit has been recorded!");
         }
     }
 
@@ -515,15 +470,14 @@ public class UI {
         String name = JOptionPane.showInputDialog("Enter the name of the midwife:");
         if (register.hasMidwife(name)) {
             int choice = JOptionPane.showOptionDialog(
-                frame,
-                "This name already exists in the records- continue and update?",
-                "Update Midwife?",
-                JOptionPane.YES_NO_OPTION,
-                JOptionPane.QUESTION_MESSAGE,
-                null,
-                new String[]{"Yes", "No"},
-                "Yes"
-            );
+                    frame,
+                    "This name already exists in the records- continue and update?",
+                    "Update Midwife?",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    new String[] { "Yes", "No" },
+                    "Yes");
             if (choice != JOptionPane.YES_OPTION)
                 return;
         }
@@ -535,7 +489,8 @@ public class UI {
         String eocServices = JOptionPane.showInputDialog("Enter what emergency obstetric services are offered:");
         boolean otrCorner = getBoolEntry(frame, "Does the midwife's facility have an OTR corner?", "OTR Corner?");
         boolean conductsDelivery = getBoolEntry(frame, "Does the midwife conduct deliveries?", "Conducts Deliveries?");
-        boolean transfusionServices = getBoolEntry(frame, "Are transfusion services available?", "Transfusion Services?");
+        boolean transfusionServices = getBoolEntry(frame, "Are transfusion services available?",
+                "Transfusion Services?");
         int numElectiveAbortions = getIntEntry(0, 1000, frame, "Enter the number of elective abortions:");
         int numSpontaneousAbortions = getIntEntry(0, 1000, frame, "Enter the number of spontaneous abortions:");
         int numInducedAbortions = getIntEntry(0, 1000, frame, "Enter the number of induced abortions:");
@@ -588,14 +543,22 @@ public class UI {
         int numOfMothers25to29 = getIntEntry(0, 1000, frame, "Enter the number of mothers aged 25-29:");
         int numOfMothers30to34 = getIntEntry(0, 1000, frame, "Enter the number of mothers aged 30-34:");
         int numOfMothers35Plus = getIntEntry(0, 1000, frame, "Enter the number of mothers aged 35+:");
-        int numVesicoVaginalFistulaSeen = getIntEntry(0, 1000, frame, "Enter the number of vesico-vaginal fistula seen:");
-        int numVesicoVaginalFistulaRepaired = getIntEntry(0, 1000, frame, "Enter the number of vesico-vaginal fistula repaired:");
-        int numVesicoVaginalFistulaReferred = getIntEntry(0, 1000, frame, "Enter the number of vesico-vaginal fistula referred:");
-        int numReceivingOxytocin3rdStageLabor = getIntEntry(0, 1000, frame, "Enter the number of mothers receiving oxytocin in 3rd stage labor:");
-        int numMothersInfantPairsOnlyBreastFeeding = getIntEntry(0, 1000, frame, "Enter the number of mothers with infant pairs only breast feeding:");
-        int numMothersBreastFeedingWithin1Hour = getIntEntry(0, 1000, frame, "Enter the number of mothers breast feeding within 1 hour:");
-        int numActiveMotherSupportGroups = getIntEntry(0, 1000, frame, "Enter the number of active mother support groups:");
-        int numTrainedInLocationManagement = getIntEntry(0, 1000, frame, "Enter the number of trained in location management:");
+        int numVesicoVaginalFistulaSeen = getIntEntry(0, 1000, frame,
+                "Enter the number of vesico-vaginal fistula seen:");
+        int numVesicoVaginalFistulaRepaired = getIntEntry(0, 1000, frame,
+                "Enter the number of vesico-vaginal fistula repaired:");
+        int numVesicoVaginalFistulaReferred = getIntEntry(0, 1000, frame,
+                "Enter the number of vesico-vaginal fistula referred:");
+        int numReceivingOxytocin3rdStageLabor = getIntEntry(0, 1000, frame,
+                "Enter the number of mothers receiving oxytocin in 3rd stage labor:");
+        int numMothersInfantPairsOnlyBreastFeeding = getIntEntry(0, 1000, frame,
+                "Enter the number of mothers with infant pairs only breast feeding:");
+        int numMothersBreastFeedingWithin1Hour = getIntEntry(0, 1000, frame,
+                "Enter the number of mothers breast feeding within 1 hour:");
+        int numActiveMotherSupportGroups = getIntEntry(0, 1000, frame,
+                "Enter the number of active mother support groups:");
+        int numTrainedInLocationManagement = getIntEntry(0, 1000, frame,
+                "Enter the number of trained in location management:");
         int numMalariaInPregnancy = getIntEntry(0, 1000, frame, "Enter the number of malaria in pregnancy cases:");
         int numDropFootCase = getIntEntry(0, 1000, frame, "Enter the number of drop foot cases:");
         int numPuerperalPsychosis = getIntEntry(0, 1000, frame, "Enter the number of puerperal psychosis cases:");
@@ -603,89 +566,230 @@ public class UI {
         int numSupervisedDelivery = getIntEntry(0, 1000, frame, "Enter the number of supervised deliveries:");
         int numNotSupervised = getIntEntry(0, 1000, frame, "Enter the number of not supervised deliveries:");
         int numNoANC = getIntEntry(0, 1000, frame, "Enter the number of mothers with no ANC:");
-        int numPostPartumVitAMother = getIntEntry(0, 1000, frame, "Enter the number of mothers receiving post-partum vitamin A:");
-        int numBabyWeight7to10Days2_5kgBelow = getIntEntry(0, 1000, frame, "Enter the number of babies weighing 2.5 kg or less at 7-10 days:");
-        int numBabyWeight7to10Days2_5kgAbove = getIntEntry(0, 1000, frame, "Enter the number of babies weighing more than 2.5 kg at 7-10 days:");
+        int numPostPartumVitAMother = getIntEntry(0, 1000, frame,
+                "Enter the number of mothers receiving post-partum vitamin A:");
+        int numBabyWeight7to10Days2_5kgBelow = getIntEntry(0, 1000, frame,
+                "Enter the number of babies weighing 2.5 kg or less at 7-10 days:");
+        int numBabyWeight7to10Days2_5kgAbove = getIntEntry(0, 1000, frame,
+                "Enter the number of babies weighing more than 2.5 kg at 7-10 days:");
         int numAntenatalReferrals = getIntEntry(0, 1000, frame, "Enter the number of antenatal referrals:");
         int numLabourReferrals = getIntEntry(0, 1000, frame, "Enter the number of labor referrals:");
         int numPostnatalReferrals = getIntEntry(0, 1000, frame, "Enter the number of postnatal referrals:");
-        String birthAbnormalities = JOptionPane.showInputDialog(
-            "Enter any birth abnormalities:"
-        );
+        String input = JOptionPane
+                .showInputDialog("Enter any birth abnormalities (comma-separated rows, semicolon-separated columns):");
+        String[][] birthAbnormalities = null;
+        if (input != null && !input.trim().isEmpty()) {
+            String[] rows = input.split(";");
+            birthAbnormalities = new String[rows.length][];
+            for (int i = 0; i < rows.length; i++) {
+                birthAbnormalities[i] = rows[i].split(",");
+            }
+        }
         int numRegistrants10to14 = getIntEntry(0, 1000, frame, "Enter the number of registrants aged 10-14:");
         int numRegistrants15to19 = getIntEntry(0, 1000, frame, "Enter the number of registrants aged 15-19:");
         int numRegistrants20to24 = getIntEntry(0, 1000, frame, "Enter the number of registrants aged 20-24:");
         int numRegistrants25to29 = getIntEntry(0, 1000, frame, "Enter the number of registrants aged 25-29:");
         int numRegistrants30to34 = getIntEntry(0, 1000, frame, "Enter the number of registrants aged 30-34:");
         int numRegistrants35Above = getIntEntry(0, 1000, frame, "Enter the number of registrants aged 35 and above:");
-        int numRegistrants10to14Abortions = getIntEntry(0, 1000, frame, "Enter the number of registrants aged 10-14 for abortions:");
-        int numRegistrants15to19Abortions = getIntEntry(0, 1000, frame, "Enter the number of registrants aged 15-19 for abortions:");
-        int numRegistrants20to24Abortions = getIntEntry(0, 1000, frame, "Enter the number of registrants aged 20-24 for abortions:");
-        int numRegistrants25to29Abortions = getIntEntry(0, 1000, frame, "Enter the number of registrants aged 25-29 for abortions:");
-        int numRegistrants30to34Abortions = getIntEntry(0, 1000, frame, "Enter the number of registrants aged 30-34 for abortions:");
-        int numRegistrants35AboveAbortions = getIntEntry(0, 1000, frame, "Enter the number of registrants aged 35 and above for abortions:");
-        int numBleedingOrHaemorrhage = getIntEntry(0, 1000, frame, "Enter the number of cases of bleeding or hemorrhage:");
-        int numSepsisOrInfectionAbortion = getIntEntry(0, 1000, frame, "Enter the number of cases of sepsis or infection during abortion:");
-        int numPerforationsAbortions = getIntEntry(0, 1000, frame, "Enter the number of perforations during abortions:");
-        int totNumOfDeathsFromPostAbortionComplications = getIntEntry(0, 1000, frame, "Enter the total number of deaths from post-abortion complications:");
+        int numRegistrants10to14Abortions = getIntEntry(0, 1000, frame,
+                "Enter the number of registrants aged 10-14 for abortions:");
+        int numRegistrants15to19Abortions = getIntEntry(0, 1000, frame,
+                "Enter the number of registrants aged 15-19 for abortions:");
+        int numRegistrants20to24Abortions = getIntEntry(0, 1000, frame,
+                "Enter the number of registrants aged 20-24 for abortions:");
+        int numRegistrants25to29Abortions = getIntEntry(0, 1000, frame,
+                "Enter the number of registrants aged 25-29 for abortions:");
+        int numRegistrants30to34Abortions = getIntEntry(0, 1000, frame,
+                "Enter the number of registrants aged 30-34 for abortions:");
+        int numRegistrants35AboveAbortions = getIntEntry(0, 1000, frame,
+                "Enter the number of registrants aged 35 and above for abortions:");
+        int numBleedingOrHaemorrhage = getIntEntry(0, 1000, frame,
+                "Enter the number of cases of bleeding or hemorrhage:");
+        int numSepsisOrInfectionAbortion = getIntEntry(0, 1000, frame,
+                "Enter the number of cases of sepsis or infection during abortion:");
+        int numPerforationsAbortions = getIntEntry(0, 1000, frame,
+                "Enter the number of perforations during abortions:");
+        int totNumOfDeathsFromPostAbortionComplications = getIntEntry(0, 1000, frame,
+                "Enter the total number of deaths from post-abortion complications:");
         int numPACFPCounselled = getIntEntry(0, 1000, frame, "Enter the number of PAC/FP counseled:");
         int numPACFPAccepting = getIntEntry(0, 1000, frame, "Enter the number of PAC/FP accepting:");
+        int numOfMothers10to14Antenatal = getIntEntry(0, 1000, frame,
+                "Enter the number of mothers aged 10-14 at antenatal:");
+        int numOfMothers15to19Antenatal = getIntEntry(0, 1000, frame,
+                "Enter the number of mothers aged 15-19 at antenatal:");
+        int numOfMothers20to24Antenatal = getIntEntry(0, 1000, frame,
+                "Enter the number of mothers aged 20-24 at antenatal:");
+        int numOfMothers25to29Antenatal = getIntEntry(0, 1000, frame,
+                "Enter the number of mothers aged 25-29 at antenatal:");
+        int numOfMothers30to34Antenatal = getIntEntry(0, 1000, frame,
+                "Enter the number of mothers aged 30-34 at antenatal:");
+        int numOfMothers35PlusAntenatal = getIntEntry(0, 1000, frame,
+                "Enter the number of mothers aged 35 and above at antenatal:");
+        int numOfMothers10to14Delivery = getIntEntry(0, 1000, frame,
+                "Enter the number of mothers aged 10-14 at delivery:");
+        int numOfMothers15to19Delivery = getIntEntry(0, 1000, frame,
+                "Enter the number of mothers aged 15-19 at delivery:");
+        int numOfMothers20to24Delivery = getIntEntry(0, 1000, frame,
+                "Enter the number of mothers aged 20-24 at delivery:");
+        int numOfMothers25to29Delivery = getIntEntry(0, 1000, frame,
+                "Enter the number of mothers aged 25-29 at delivery:");
+        int numOfMothers30to34Delivery = getIntEntry(0, 1000, frame,
+                "Enter the number of mothers aged 30-34 at delivery:");
+        int numOfMothers35PlusDelivery = getIntEntry(0, 1000, frame,
+                "Enter the number of mothers aged 35 and above at delivery:");
+        int numRegistrants10to14Postnatal = getIntEntry(0, 1000, frame,
+                "Enter the number of registrants aged 10-14 at postnatal:");
+        int numRegistrants15to19Postnatal = getIntEntry(0, 1000, frame,
+                "Enter the number of registrants aged 15-19 at postnatal:");
+        int numRegistrants20to24Postnatal = getIntEntry(0, 1000, frame,
+                "Enter the number of registrants aged 20-24 at postnatal:");
+        int numRegistrants25to29Postnatal = getIntEntry(0, 1000, frame,
+                "Enter the number of registrants aged 25-29 at postnatal:");
+        int numRegistrants30to34Postnatal = getIntEntry(0, 1000, frame,
+                "Enter the number of registrants aged 30-34 at postnatal:");
+        int numRegistrants35AbovePostnatal = getIntEntry(0, 1000, frame,
+                "Enter the number of registrants aged 35 and above at postnatal:");
 
+        Midwife midwife = new Midwife(
 
-        Midwife midwife = new Midwife(institution, facilityType, district, subDistrict, region, eocServices, otrCorner,
-        conductsDelivery, transfusionServices, PMTCT, babyFriendlyServices, numOfRegistrants, attendances,
-        numOf4thVisits, TT2PlusVaccination, parity, ageOfMotherAtRegistration, mothersBelow150cm,
-        numOfSingleBirthMom, numOfTwinsMom, numOfTripletsMom, numOfOtherNumOfBirthsMom, numOfSingleBirthBaby,
-        numOfTwinsBaby, numOfTripletsBaby, numOfOtherNumOfBirthsBaby, totNumMoms, totNumBaby, numLiveMaleBirths,
-        numLiveFemaleBirths, numStillMaceratedBirths, numStillFreshBirths, numPrimparn, numMultiparn,
-        totalBelow2_5kgWeight, totalAbove2_5kgWeight, numOfDeliveries2PlusIPT, numOfMaternalDeaths,
-        numOfAuditedMaternalDeaths, numOfNeonatalDeaths, numOfPostneonatalDeaths, numNormalDelivery,
-        numCSection, numVacuumDelivery, numForcepDelivery, totalDeliveries, numOfMothers10to14,
-        numOfMothers15to19, numOfMothers20to24, numOfMothers25to29, numOfMothers30to34, numOfMothers35Plus,
-        numVesicoVaginalFistulaSeen, numVesicoVaginalFistulaRepaired, numVesicoVaginalFistulaReferred,
-        numReceivingOxytocin3rdStageLabor, numMothersInfantPairsOnlyBreastFeeding,
-        numMothersBreastFeedingWithin1Hour, numActiveMotherSupportGroups, numTrainedInLocationManagement,
-        numMalariaInPregnancy, numDropFootCase, numPuerperalPsychosis, numRegistrants, numSupervisedDelivery,
-        numNotSupervised, numNoANC, numPostPartumVitAMother, numBabyWeight7to10Days2_5kgBelow,
-        numBabyWeight7to10Days2_5kgAbove, numAntenatalReferrals, numLabourReferrals, numPostnatalReferrals,
-        birthAbnormalities, numRegistrants10to14, numRegistrants15to19, numRegistrants20to24,
-        numRegistrants25to29, numRegistrants30to34, numRegistrants35Above, numElectiveAbortions,
-        numSpontaneousAbortions, numInducedAbortions, numMVAsDone, numDCDone, numRegistrants10to14Abortions,
-        numRegistrants15to19Abortions, numRegistrants20to24Abortions, numRegistrants25to29Abortions,
-        numRegistrants30to34Abortions, numRegistrants35AboveAbortions, numBleedingOrHaemorrhage,
-        numSepsisOrInfectionAbortion, numPerforationsAbortions, totNumOfDeathsFromPostAbortionComplications,
-        numPACFPCounselled, numPACFPAccepting, numMalesSeenAtANC, numMalesSeenAtDEL, numMalesSeenPNC,
-        numMalesSeenFP
-        ); // Ensure the Midwife class constructor matches these arguments
+                institution,
+                facilityType,
+                district,
+                subDistrict,
+                region,
+                eocServices,
+                otrCorner,
+                conductsDelivery,
+                transfusionServices,
+                PMTCT,
+                babyFriendlyServices,
+
+                numOfRegistrants,
+                attendances,
+                numOf4thVisits,
+                TT2PlusVaccination,
+                parity,
+                ageOfMotherAtRegistration,
+                mothersBelow150cm,
+                numOfMothers10to14Antenatal,
+                numOfMothers15to19Antenatal,
+                numOfMothers20to24Antenatal,
+                numOfMothers25to29Antenatal,
+                numOfMothers30to34Antenatal,
+                numOfMothers35PlusAntenatal,
+
+                numOfSingleBirthMom,
+                numOfTwinsMom,
+                numOfTripletsMom,
+                numOfOtherNumOfBirthsMom,
+                numOfSingleBirthBaby,
+                numOfTwinsBaby,
+                numOfTripletsBaby,
+                numOfOtherNumOfBirthsBaby,
+                totNumMoms,
+                totNumBaby,
+                numLiveMaleBirths,
+                numLiveFemaleBirths,
+                numStillMaceratedBirths,
+                numStillFreshBirths,
+                numPrimparn,
+                numMultiparn,
+                totalBelow2_5kgWeight,
+                totalAbove2_5kgWeight,
+                numOfDeliveries2PlusIPT,
+                numOfMaternalDeaths,
+                numOfAuditedMaternalDeaths,
+                numOfNeonatalDeaths,
+                numOfPostneonatalDeaths,
+                numNormalDelivery,
+                numCSection,
+                numVacuumDelivery,
+                numForcepDelivery,
+                totalDeliveries,
+                numOfMothers10to14Delivery,
+                numOfMothers15to19Delivery,
+                numOfMothers20to24Delivery,
+                numOfMothers25to29Delivery,
+                numOfMothers30to34Delivery,
+                numOfMothers35PlusDelivery,
+                numVesicoVaginalFistulaSeen,
+                numVesicoVaginalFistulaRepaired,
+                numVesicoVaginalFistulaReferred,
+                numReceivingOxytocin3rdStageLabor,
+                numMothersInfantPairsOnlyBreastFeeding,
+                numMothersBreastFeedingWithin1Hour,
+                numActiveMotherSupportGroups,
+                numTrainedInLocationManagement,
+                numMalariaInPregnancy,
+                numDropFootCase,
+                numPuerperalPsychosis,
+
+                numRegistrants,
+                numSupervisedDelivery,
+                numNotSupervised,
+                numNoANC,
+                numPostPartumVitAMother,
+                numBabyWeight7to10Days2_5kgBelow,
+                numBabyWeight7to10Days2_5kgAbove,
+                numAntenatalReferrals,
+                numLabourReferrals,
+                numPostnatalReferrals,
+                birthAbnormalities,
+                numRegistrants10to14Postnatal,
+                numRegistrants15to19Postnatal,
+                numRegistrants20to24Postnatal,
+                numRegistrants25to29Postnatal,
+                numRegistrants30to34Postnatal,
+                numRegistrants35AbovePostnatal,
+                numElectiveAbortions,
+                numSpontaneousAbortions,
+                numInducedAbortions,
+                numMVAsDone,
+                numDCDone,
+                numRegistrants10to14Abortions,
+                numRegistrants15to19Abortions,
+                numRegistrants20to24Abortions,
+                numRegistrants25to29Abortions,
+                numRegistrants30to34Abortions,
+                numRegistrants35AboveAbortions,
+                numBleedingOrHaemorrhage,
+                numSepsisOrInfectionAbortion,
+                numPerforationsAbortions,
+                totNumOfDeathsFromPostAbortionComplications,
+                numPACFPCounselled,
+                numPACFPAccepting,
+                numMalesSeenAtANC,
+                numMalesSeenAtDEL,
+                numMalesSeenPNC,
+                numMalesSeenFP);
         register.addMidwife(name, midwife);
     }
 
     /**
      * Prompts the user to choose between manual or PDF entry for a record type.
      *
-     * @param frame the parent JFrame
-     * @param recordType the type of record (e.g., "Mother Visit" or "Midwife Record")
-     */    
+     * @param frame      the parent JFrame
+     * @param recordType the type of record (e.g., "Mother Visit" or "Midwife
+     *                   Record")
+     */
     private static void showOptionsDialog(JFrame frame, String recordType) {
         // Create a dialog with two options
         int choice = JOptionPane.showOptionDialog(
-            frame,
-            "How would you like to add the " + recordType + "?",
-            "Select Entry Method",
-            JOptionPane.YES_NO_OPTION,
-            JOptionPane.QUESTION_MESSAGE,
-            null,
-            new String[]{"Manual Entry", "PDF Scan"},
-            "Manual Entry"
-        );
+                frame,
+                "How would you like to add the " + recordType + "?",
+                "Select Entry Method",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                new String[] { "Manual Entry", "PDF Scan" },
+                "Manual Entry");
 
         if (choice == JOptionPane.YES_OPTION) {
             // Manual Entry selected
             JOptionPane.showMessageDialog(frame, "Manual Entry selected for " + recordType + ".");
             if (recordType.equals("Mother Visit")) {
                 manualAddMotherVisit(frame);
-            }
-            else if (recordType.equals("Midwife Record"))
+            } else if (recordType.equals("Midwife Record"))
                 manualAddMidwife(frame);
         } else if (choice == JOptionPane.NO_OPTION) {
             // PDF Scan selected
@@ -698,14 +802,16 @@ public class UI {
                 if (selectedFile.getName().endsWith(".pdf")) {
                     JOptionPane.showMessageDialog(frame, "Selected file: " + selectedFile.getAbsolutePath());
                 } else {
-                    JOptionPane.showMessageDialog(frame, "Please select a valid PDF file.", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(frame, "Please select a valid PDF file.", "Error",
+                            JOptionPane.ERROR_MESSAGE);
                 }
             }
         }
     }
 
     /**
-     * Prompts the user for a mother's name and registration number, and displays a summary report.
+     * Prompts the user for a mother's name and registration number, and displays a
+     * summary report.
      *
      * @param frame the parent JFrame
      */
@@ -720,7 +826,8 @@ public class UI {
         // Prompt the user for the registration number
         String registrationNumberInput = JOptionPane.showInputDialog(frame, "Enter the mother's registration number:");
         if (registrationNumberInput == null || registrationNumberInput.trim().isEmpty()) {
-            JOptionPane.showMessageDialog(frame, "Registration number cannot be empty.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(frame, "Registration number cannot be empty.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
             return;
         }
 
@@ -728,14 +835,16 @@ public class UI {
         try {
             registrationNumber = Integer.parseInt(registrationNumberInput.trim());
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(frame, "Invalid registration number. Please enter a valid number.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(frame, "Invalid registration number. Please enter a valid number.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         // Find the mother in the register
         Mother mother = register.getMother(motherName);
         if (mother == null || mother.getRegistrationNumber() != registrationNumber) {
-            JOptionPane.showMessageDialog(frame, "No mother found with the provided name and registration number.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(frame, "No mother found with the provided name and registration number.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
@@ -754,7 +863,8 @@ public class UI {
     }
 
     /**
-     * Prompts the user for a month and year, then displays a summary of all midwife records
+     * Prompts the user for a month and year, then displays a summary of all midwife
+     * records
      * relevant to that period.
      *
      * @param frame the parent JFrame
@@ -774,7 +884,8 @@ public class UI {
                 throw new NumberFormatException("Month out of range");
             }
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(frame, "Invalid month. Please enter a number between 1 and 12.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(frame, "Invalid month. Please enter a number between 1 and 12.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
             return;
         }
 
@@ -792,7 +903,8 @@ public class UI {
                 throw new NumberFormatException("Year out of range");
             }
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(frame, "Invalid year. Please enter a valid year (e.g., 2025).", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(frame, "Invalid year. Please enter a valid year (e.g., 2025).", "Error",
+                    JOptionPane.ERROR_MESSAGE);
             return;
         }
 
@@ -801,10 +913,10 @@ public class UI {
         boolean hasRelevantData = false;
 
         for (Midwife midwife : register.getMidwives()) {
-            // Assuming midwife data includes a method to check relevance for the given month/year
+            // Assuming midwife data includes a method to check relevance for the given
+            // month/year
             if (midwife.isRelevantForMonthYear(month, year)) {
                 hasRelevantData = true;
-                report.append("Name: ").append(midwife.getName()).append("\n");
                 report.append("Institution: ").append(midwife.getInstitution()).append("\n");
                 report.append("Facility Type: ").append(midwife.getFacilityType()).append("\n");
                 report.append("Region: ").append(midwife.getRegion()).append("\n");
@@ -817,7 +929,8 @@ public class UI {
         if (hasRelevantData) {
             JOptionPane.showMessageDialog(frame, report.toString(), "Midwife Report", JOptionPane.INFORMATION_MESSAGE);
         } else {
-            JOptionPane.showMessageDialog(frame, "No midwife records found for " + month + "/" + year + ".", "Midwife Report", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(frame, "No midwife records found for " + month + "/" + year + ".",
+                    "Midwife Report", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 }
